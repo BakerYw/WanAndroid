@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Toolbar.PhotoPicker" parent="ThemeOverlay.AppCompat.Light">
+
+    </style>
+
+    <style name="PhotoPicker" parent="Matisse.Zhihu">
+        <item name="colorPrimary">@android:color/white</item>
+        <item name="colorPrimaryDark">@android:color/white</item>
+        <item name="toolbar">@style/Toolbar.PhotoPicker</item>
+        <item name="album.dropdown.title.color">#313131</item>
+        <item name="album.dropdown.count.color">#313131</item>
+        <item name="album.element.color">#313131</item>
+        <item name="album.thumbnail.placeholder">@color/zhihu_album_dropdown_thumbnail_placeholder
+        </item>
+        <item name="album.emptyView">@drawable/ic_empty_zhihu</item>
+        <item name="album.emptyView.textColor">@color/zhihu_album_empty_view</item>
+        <item name="item.placeholder">@color/zhihu_item_placeholder</item>
+        <item name="item.checkCircle.backgroundColor">#FF6773</item>
+        <item name="item.checkCircle.borderColor">@color/zhihu_item_checkCircle_borderColor</item>
+        <item name="page.bg">@color/zhihu_page_bg</item>
+        <item name="bottomToolbar.bg">@color/zhihu_bottom_toolbar_bg</item>
+        <item name="bottomToolbar.preview.textColor">#313131</item>
+        <item name="bottomToolbar.apply.textColor">#313131</item>
+        <item name="preview.bottomToolbar.back.textColor">@android:color/white</item>
+        <item name="preview.bottomToolbar.apply.textColor">@android:color/white</item>
+        <item name="listPopupWindowStyle">@style/Popup.Zhihu</item>
+        <item name="capture.textColor">@color/zhihu_capture</item>
+
+        <!--<item name="colorPrimary">@android:color/white</item>-->
+        <!--<item name="colorPrimaryDark">@android:color/white</item>-->
+        <!--<item name="toolbar">@style/Toolbar.PhotoPicker</item>-->
+        <!--<item name="album.title.color">@color/zhihu_album_title_text</item>-->
+        <!--<item name="album.count.color">@color/zhihu_album_count_text</item>-->
+        <!--<item name="album.selected">#313131</item>-->
+        <!--<item name="album.placeholder">@color/zhihu_album_placeholder</item>-->
+        <!--<item name="album.emptyView">@drawable/ic_empty_zhihu</item>-->
+        <!--<item name="album.emptyView.color">@android:color/white</item>-->
+        <!--<item name="item.placeholder">@color/zhihu_item_placeholder</item>-->
+        <!--<item name="page.bg">@color/zhihu_page_bg</item>-->
+        <!--<item name="bottomToolbar.bg">@color/zhihu_bottom_toolbar_bg</item>-->
+        <!--<item name="bottomToolbar.preview.color">#313131</item>-->
+        <!--<item name="bottomToolbar.apply.color">#313131</item>-->
+        <!--<item name="listPopupWindowStyle">@style/Popup.Zhihu</item>-->
+        <!--<item name="capture.color">@color/zhihu_capture</item>-->
+    </style>
+</resources>

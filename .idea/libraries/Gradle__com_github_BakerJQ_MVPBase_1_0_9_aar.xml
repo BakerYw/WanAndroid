@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.BakerJQ:MVPBase:1.0.9@aar">
+    <CLASSES>
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7f66a337003091d470838a3f27edc0b4/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/7f66a337003091d470838a3f27edc0b4/jars/classes.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.BakerJQ/MVPBase/1.0.9/1350da5629cf85ae1ec661284c528048123c5853/MVPBase-1.0.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

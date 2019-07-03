@@ -1,0 +1,150 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.alibaba.arouter'
+
+android {
+    compileSdkVersion versions.compileSdk
+    defaultConfig {
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        flavorDimensions "versionCode"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+                includeCompileClasspath true
+            }
+        }
+        multiDexEnabled true
+//        multiDexKeepFile file('multiDexKeep.txt')
+    }
+    dexOptions {
+        preDexLibraries = false
+    }
+    signingConfigs {
+        debug {
+            storeFile file("./cbds.jks")
+            storePassword "cbds123456"
+            keyAlias "key0"
+            keyPassword "cbds123456"
+        }
+        release {
+            storeFile file("./cbds.jks")
+            storePassword "cbds123456"
+            keyAlias "key0"
+            keyPassword "cbds123456"
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    dataBinding {
+        enabled = true
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+        }
+        release {
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources true
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    flavorDimensions 'default'
+    productFlavors {
+        JoinTest {
+            dimension 'default'
+            applicationId versions.appIdTest
+            versionName versions.versionNameTest
+            versionCode versions.versionCodeTest
+            buildConfigField 'String', 'API_SERVER_URL', versions.apiServerUrlTest
+            buildConfigField 'String', 'API_SERVER_UPLOAD', versions.apiServerUploadTest
+            buildConfigField 'int', 'API_TIME_OUT', versions.apiTimeOutDebug
+            buildConfigField 'boolean', 'IS_RELEASE', 'false'
+//            manifestPlaceholders = [appName: versions.appNameTest, qqappid: "1105704078"]
+        }
+        Dev {
+            dimension 'default'
+            applicationId versions.appIdDev
+            versionName versions.versionNameDev
+            versionCode versions.versionCodeDev
+            buildConfigField 'String', 'API_SERVER_URL', versions.apiServerUrlDev
+            buildConfigField 'String', 'API_SERVER_UPLOAD', versions.apiServerUploadDev
+            buildConfigField 'int', 'API_TIME_OUT', versions.apiTimeOutRelease
+            buildConfigField 'boolean', 'IS_RELEASE', 'false'
+//            manifestPlaceholders = [appName: versions.appNameDev, qqappid: "1105704078"]
+        }
+        Qa {
+            dimension 'default'
+            applicationId versions.appIdQa
+            versionName versions.versionNameQa
+            versionCode versions.versionCodeQa
+            buildConfigField 'String', 'API_SERVER_URL', versions.apiServerUrlQa
+            buildConfigField 'String', 'API_SERVER_UPLOAD', versions.apiServerUploadQa
+            buildConfigField 'int', 'API_TIME_OUT', versions.apiTimeOutRelease
+            buildConfigField 'boolean', 'IS_RELEASE', 'false'
+//            manifestPlaceholders = [appName: versions.appNameQa, qqappid: "1105704078"]
+        }
+        Uat {
+            dimension 'default'
+            applicationId versions.appIdUat
+            versionName versions.versionNameUat
+            versionCode versions.versionCodeUat
+            buildConfigField 'String', 'API_SERVER_URL', versions.apiServerUrlUat
+            buildConfigField 'String', 'API_SERVER_UPLOAD', versions.apiServerUploadUat
+            buildConfigField 'int', 'API_TIME_OUT', versions.apiTimeOutRelease
+            buildConfigField 'boolean', 'IS_RELEASE', 'false'
+//            manifestPlaceholders = [appName: versions.appNameUat, qqappid: "1105704078"]
+        }
+        Pd {
+            dimension 'default'
+            applicationId versions.appIdPd
+            versionName versions.versionNamePd
+            versionCode versions.versionCodePd
+            buildConfigField 'String', 'API_SERVER_URL', versions.apiServerUrlPd
+            buildConfigField 'String', 'API_SERVER_UPLOAD', versions.apiServerUploadPd
+            buildConfigField 'int', 'API_TIME_OUT', versions.apiTimeOutRelease
+            buildConfigField 'boolean', 'IS_RELEASE', 'true'
+//            manifestPlaceholders = [appName: versions.appNamePd, qqappid: "1105704078"]
+        }
+    }
+
+    sourceSets {
+        main {
+            //jniLibs.srcDirs = ['libs']
+            res.srcDirs = ['src/main/res','src/main/res-main']
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':libproject')
+    implementation 'androidx.appcompat:appcompat:1.1.0-beta01'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.0-beta1'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0-alpha05'
+    testImplementation 'junit:junit:4.13-beta-3'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation 'com.alibaba:arouter-api:1.4.1'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.blankj:utilcode:1.23.7'
+    implementation 'com.trello.rxlifecycle3:rxlifecycle:3.0.0'
+    implementation 'com.trello.rxlifecycle3:rxlifecycle-components:3.0.0'
+    implementation 'com.jakewharton:butterknife:10.1.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+    annotationProcessor 'frankiesardo:icepick-processor:3.2.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.5.0'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    implementation 'com.github.ittianyu:BottomNavigationViewEx:2.0.4'
+    implementation 'net.soulwolf.widget:ratiolayout:2.1.0'
+    implementation 'com.github.razerdp:BasePopup:2.2.0'
+}

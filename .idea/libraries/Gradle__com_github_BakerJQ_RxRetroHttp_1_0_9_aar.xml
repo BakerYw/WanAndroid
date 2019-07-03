@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.BakerJQ:RxRetroHttp:1.0.9@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/86aeb6bdb5c34b3ebcf099143f2305d9/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/86aeb6bdb5c34b3ebcf099143f2305d9/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.BakerJQ/RxRetroHttp/1.0.9/da419928d2fd20a207a8801060f7f0a55da53e89/RxRetroHttp-1.0.9-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

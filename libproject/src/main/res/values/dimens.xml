@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="title_txt_size">17sp</dimen>
+    <dimen name="title_bar_height">48dp</dimen>
+    <dimen name="back_img_size">48dp</dimen>
+    <dimen name="main_title_txt_size">17sp</dimen>
+</resources>

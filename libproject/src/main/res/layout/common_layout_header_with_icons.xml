@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/header_root"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/title_bar_height"
+    android:background="@android:color/transparent">
+
+    <TextView
+        android:id="@+id/common_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:maxLines="1"
+        android:paddingStart="@dimen/title_bar_height"
+        android:paddingEnd="@dimen/title_bar_height"
+        android:textColor="#ffffff"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/common_iv_back"
+        android:layout_width="@dimen/back_img_size"
+        android:layout_height="@dimen/back_img_size"
+        android:contentDescription="@string/back"
+        android:padding="15dp"
+        android:src="@mipmap/back_white"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/common_iv_iconR"
+        android:layout_width="48dp"
+        android:layout_height="@dimen/back_img_size"
+        android:padding="15dp"
+        android:visibility="gone"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/common_iv_iconL"
+        android:layout_width="30dp"
+        android:layout_height="@dimen/back_img_size"
+        android:layout_marginEnd="10dp"
+        android:paddingLeft="7dp"
+        android:paddingTop="16dp"
+        android:paddingRight="7dp"
+        android:paddingBottom="16dp"
+        android:visibility="gone"
+        app:layout_constraintRight_toLeftOf="@id/common_iv_iconR"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

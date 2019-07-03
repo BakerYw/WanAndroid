@@ -1,0 +1,79 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+
+    ext.versions = [
+            'versionCodeDev'      : 2019060801,
+            'versionNameDev'      : 'WAN_DEV_A_R20190608T01',
+            'versionCodeTest'     : 2019060801,
+            'versionNameTest'     : 'WAN_TEST_A_R20190608T01',
+            'versionCodeQa'       : 2019060801,
+            'versionNameQa'       : 'WAN_QA_A_R20190608T01',
+            'versionCodeUat'      : 2019060801,
+            'versionNameUat'      : 'WAN_UAT_A_R20190608T01',
+            'versionCodePd'       : 2019060801,
+            'versionNamePd'       : '1.0.0',
+
+            'appIdTest'           : 'com.nyw.wanandroid.test',
+            'appIdDev'            : 'com.nyw.wanandroid.dev',
+            'appIdQa'             : 'com.nyw.wanandroid.qa',
+            'appIdUat'            : 'com.nyw.wanandroid.uat',
+            'appIdPd'             : 'com.nyw.wanandroid',
+
+            'appNameTest'         : '玩Android联调版',
+            'appNameDev'          : '玩Android开发版',
+            'appNameQa'           : '玩Android测试版',
+            'appNameUat'          : '玩Android内测版',
+            'appNamePd'           : '玩Android',
+
+            'apiServerUrlTest'    : '"https://www.wanandroid.com/"',
+            'apiServerUrlDev'     : '"https://www.wanandroid.com/"',
+            'apiServerUrlQa'      : '"https://www.wanandroid.com/"',
+            'apiServerUrlUat'     : '"https://www.wanandroid.com/"',
+            'apiServerUrlPd'      : '"https://www.wanandroid.com/"',
+
+            'apiServerUploadTest' : '"https://www.wanandroid.com/"',
+            'apiServerUploadDev'  : '"https://www.wanandroid.com/"',
+            'apiServerUploadQa'   : '"https://www.wanandroid.com/"',
+            'apiServerUploadUat'  : '"https://www.wanandroid.com/"',
+            'apiServerUploadPd'   : '"https://www.wanandroid.com/"',
+
+            "apiTimeOutDebug"     : '600000',
+            "apiTimeOutRelease"   : '10000',
+
+            'compileSdk'          : 28,
+            'buildTools'          : '28',
+            'minSdk'              : 19,
+            'targetSdk'           : 28,
+    ]
+    repositories {
+        google()
+        jcenter()
+        maven {
+            url "http://mvnrepo.alibaba-inc.com/mvn/repository"
+        }
+
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.1'
+        classpath "com.alibaba:arouter-register:1.0.2"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        maven { url "https://jitpack.io" }
+        maven {
+            url "http://repo.baichuan-android.taobao.com/content/groups/BaichuanRepositories/"
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

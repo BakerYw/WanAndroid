@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/WanAndroid.iml" filepath="$PROJECT_DIR$/WanAndroid.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/domain/domain.iml" filepath="$PROJECT_DIR$/domain/domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libproject/libproject.iml" filepath="$PROJECT_DIR$/libproject/libproject.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libthird/libthird.iml" filepath="$PROJECT_DIR$/libthird/libthird.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libwidgets/libwidgets.iml" filepath="$PROJECT_DIR$/libwidgets/libwidgets.iml" />
+    </modules>
+  </component>
+</project>

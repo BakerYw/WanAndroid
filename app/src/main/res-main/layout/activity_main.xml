@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorAccent"
+    android:orientation="vertical">
+    <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
+        android:id="@+id/home_nav"
+        android:layout_width="match_parent"
+        android:layout_height="49dp"
+        android:background="@android:color/white"
+        app:itemIconSize="22dp"
+        app:itemTextColor="@color/nav_text_color"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/home_nav_menu" />
+    <com.nyw.libwidgets.scroll.TouchHandleViewPager
+        android:id="@+id/home_vp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/status_bar_padding"
+        app:layout_constraintBottom_toTopOf="@id/home_nav"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

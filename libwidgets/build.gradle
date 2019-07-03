@@ -1,0 +1,57 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion versions.compileSdk
+    defaultConfig {
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        flavorDimensions "versionCode"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: project.getName()]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    sourceSets {
+        main {
+            //jniLibs.srcDirs = ['libs']
+            res.srcDirs = ['src/main/res','src/main/res-bga','src/main/res-photopicker', 'src/main/res-citypicker']
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.appcompat:appcompat:1.1.0-beta01'
+    implementation 'androidx.viewpager2:viewpager2:1.0.0-alpha05'
+    testImplementation 'junit:junit:4.13-beta-3'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    api 'com.qmuiteam:qmui:1.1.3'
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-andx-11'
+    implementation 'com.blankj:utilcode:1.23.7'
+    api 'jp.wasabeef:glide-transformations:3.0.1'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    api 'com.zhihu.android:matisse:0.5.2-beta4'
+    api 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.5@aar'
+    api 'com.github.yalantis:ucrop:2.2.2'
+    api 'top.zibin:Luban:1.1.8'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.3'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+}

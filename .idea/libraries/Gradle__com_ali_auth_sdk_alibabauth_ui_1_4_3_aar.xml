@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="Gradle: com.ali.auth.sdk:alibabauth_ui:1.4.3@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e83fdc1ebb482f5f7759a937a2ee5b4c/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/e83fdc1ebb482f5f7759a937a2ee5b4c/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
