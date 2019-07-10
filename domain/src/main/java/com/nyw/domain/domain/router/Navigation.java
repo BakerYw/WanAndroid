@@ -152,21 +152,20 @@ public class Navigation {
                 .withLong("circleStateId", circleStateId).navigation();
     }
 
-    //location
-    public static void navigateToLocationSelect() {
-        ARouter.getInstance().build(PathConstants.PATH_LOCATION_SELECT)
+    //Knowledge
+    public static Fragment getKnowledgeFragment() {
+        return (Fragment) ARouter.getInstance().build(PathConstants.PATH_KNOWLEDGE).navigation();
+    }
+
+    public static Fragment getArtFragment() {
+        return (Fragment) ARouter.getInstance().build(PathConstants.PATH_KNOWLEDG_ART)
                 .navigation();
     }
-
-    //mall
-    public static Fragment getMallFragment() {
-        return (Fragment) ARouter.getInstance().build(PathConstants.PATH_MALL).navigation();
+    public static Fragment getNavFragment() {
+        return (Fragment) ARouter.getInstance().build(PathConstants.PATH_KNOWLEDG_NAV)
+               .navigation();
     }
 
-    public static Fragment getGoodListFragment(String subcat) {
-        return (Fragment) ARouter.getInstance().build(PathConstants.PATH_GOOD_LIST)
-                .withString("subcat", subcat).navigation();
-    }
 
     public static void navigateToGoodDetail(long itemId) {
         ARouter.getInstance().build(PathConstants.PATH_GOOD_DETAIL)

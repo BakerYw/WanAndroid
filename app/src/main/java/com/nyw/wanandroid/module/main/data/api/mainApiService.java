@@ -21,18 +21,5 @@ import retrofit2.http.Query;
  */
 public interface mainApiService {
 
-    /**
-     * 首页文章列表
-     * 方法：GET
-     * 参数：页码，拼接在连接中，从0开始。
-     */
-    @GET(API.HomeAPI.article)
-    Observable<PageLoadMoreResponse<ArticleBean>> getArticleList(
-            @Path("page") int page);
 
-    /**
-     * 首页banner
-     */
-    @GET(API.HomeAPI.banner)
-    Observable<List<BannerBean>> getBanner();
 }

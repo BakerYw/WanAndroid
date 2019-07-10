@@ -39,18 +39,15 @@ public class PathConstants {
     public static final String PATH_CIRCLE_OWNER_CIRCLE = PATH_GROUP_CIRCLE + "/owner/circle";
     public static final String PATH_CIRCLE_OPERATION = PATH_GROUP_CIRCLE + "/operation";
 
-    //scheme location
-    private static final String PATH_GROUP_LOCATION = "/location";
-    public static final String PATH_LOCATION_SELECT = PATH_GROUP_LOCATION + "/select";
-
-    //scheme mall
-    private static final String PATH_GROUP_MALL = "/mall";
-    public static final String PATH_MALL = PATH_GROUP_MALL + "/home";
-    public static final String PATH_GOOD_LIST = PATH_GROUP_MALL + "/good/list";
-    public static final String PATH_GOOD_DETAIL = PATH_GROUP_MALL + "/good/detail";
-    public static final String PATH_ORDER = PATH_GROUP_MALL + "/order";
-    public static final String PATH_ORDER_LIST = PATH_GROUP_MALL + "/order/list";
-    public static final String PATH_MALL_SEARCH = PATH_GROUP_MALL + "/search";
+    //scheme knowledge
+    private static final String PATH_GROUP_KNOWLEDGE = "/knowledge";
+    public static final String PATH_KNOWLEDGE = PATH_GROUP_KNOWLEDGE + "/home";
+    public static final String PATH_KNOWLEDG_ART = PATH_GROUP_KNOWLEDGE + "/home/art";
+    public static final String PATH_KNOWLEDG_NAV = PATH_GROUP_KNOWLEDGE + "/home/nav";
+    public static final String PATH_GOOD_DETAIL = PATH_GROUP_KNOWLEDGE + "/good/detail";
+    public static final String PATH_ORDER = PATH_GROUP_KNOWLEDGE + "/order";
+    public static final String PATH_ORDER_LIST = PATH_GROUP_KNOWLEDGE + "/order/list";
+    public static final String PATH_MALL_SEARCH = PATH_GROUP_KNOWLEDGE + "/search";
 
     //scheme me
     private static final String PATH_GROUP_ME = "/me";

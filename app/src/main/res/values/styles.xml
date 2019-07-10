@@ -31,6 +31,12 @@
         <item name="android:windowBackground">@android:color/white</item>
     </style>
 
+    <style name="TabStyle">
+        <!-- Customize your theme here. -->
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">#686868</item>
+    </style>
+
     <style name="PinglunDialog" parent="@style/AppTheme">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>

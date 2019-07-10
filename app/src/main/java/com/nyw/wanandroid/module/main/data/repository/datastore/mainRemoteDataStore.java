@@ -20,12 +20,5 @@ import io.reactivex.Observable;
 public class mainRemoteDataStore {
     private mainApiService mService = RxRetroHttp.create(mainApiService.class);
 
-    public Observable<PageLoadMoreResponse<ArticleBean>> getArticleList(HomeReq req) {
-        return mService.getArticleList(req.getPage());
-    }
-
-    public Observable<List<BannerBean>> getBannerList() {
-        return mService.getBanner();
-    }
 
 }

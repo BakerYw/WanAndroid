@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item name="nav_circle" type="id" />
-    <item name="nav_mall" type="id" />
+    <item name="nav_home" type="id" />
+    <item name="nav_knowledge" type="id" />
+    <item name="nav_wechat" type="id" />
+    <item name="nav_project" type="id" />
     <item name="nav_me" type="id" />
 </resources>

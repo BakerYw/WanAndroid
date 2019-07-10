@@ -37,10 +37,10 @@ public class MainActivity extends WanBaseActivity {
 
     private void initNav() {
         homeVp.setCanTouch(false);
-        homeVp.setOffscreenPageLimit(3);
+        homeVp.setOffscreenPageLimit(5);
         BasePagerAdapter adapter = new BasePagerAdapter(getSupportFragmentManager(),
-                Navigation.getCircleFragment(), Navigation.getCircleFragment(),
-                Navigation.getCircleFragment());
+                Navigation.getCircleFragment(), Navigation.getKnowledgeFragment(),
+                Navigation.getKnowledgeFragment(),Navigation.getKnowledgeFragment(),Navigation.getKnowledgeFragment());
         homeVp.setAdapter(adapter);
     }
 
@@ -51,13 +51,21 @@ public class MainActivity extends WanBaseActivity {
         homeNav.setTextSize(10);
         homeNav.setOnNavigationItemSelectedListener(menuItem -> {
             switch (menuItem.getItemId()) {
-                case R.id.nav_circle:
+                case R.id.nav_home:
                     preIndex = 0;
                     homeVp.setCurrentItem(0, false);
                     break;
-                case R.id.nav_mall:
+                case R.id.nav_knowledge:
                     preIndex = 1;
                     homeVp.setCurrentItem(1, false);
+                    break;
+                case R.id.nav_wechat:
+                    preIndex = 2;
+                    homeVp.setCurrentItem(2, false);
+                    break;
+                case R.id.nav_project:
+                    preIndex = 3;
+                    homeVp.setCurrentItem(3, false);
                     break;
                 default:
                     homeNav.postDelayed(() -> homeNav.setCurrentItem(preIndex), 500);
