@@ -5,22 +5,13 @@ package com.nyw.domain.common.loadmore;
  * @date 2018/6/21
  */
 public class PageLoadMoreRequest {
-    private int currentPage;
-    private int pageSize;
+    private int page;
 
-    public int getCurrentPage() {
-        return currentPage;
+    public int getPage() {
+        return page;
     }
 
-    public void setCurrentPage(int currentPage) {
-        this.currentPage = currentPage;
-    }
-
-    public int getPageSize() {
-        return pageSize;
-    }
-
-    public void setPageSize(int pageSize) {
-        this.pageSize = pageSize;
+    public void setPage(int page) {
+        this.page = page;
     }
 }

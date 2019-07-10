@@ -155,6 +155,7 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant_run_split_apk_resources" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/javac" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/legacy_multidex_aapt_derived_proguard_rules" />
+      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/legacy_multidex_main_dex_list" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifest-checker" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/merged_assets" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/merged_jni_libs" />
@@ -291,34 +292,6 @@
     <orderEntry type="library" name="Gradle: androidx.annotation:annotation:1.1.0-rc01@jar" level="project" />
     <orderEntry type="library" name="Gradle: __local_aars__:/Users/apple/Documents/WanAndroid/libthird/libs/umeng-common-1.5.3.jar:unspecified@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.databinding:databinding-runtime:3.4.1@aar" level="project" />
-    <orderEntry type="module" module-name="libproject" />
-    <orderEntry type="module" module-name="domain" />
-    <orderEntry type="module" module-name="libthird" />
-    <orderEntry type="module" module-name="libwidgets" />
-    <orderEntry type="module" module-name="libproject" />
-    <orderEntry type="module" module-name="domain" />
-    <orderEntry type="module" module-name="libthird" />
-    <orderEntry type="module" module-name="libwidgets" />
-    <orderEntry type="module" module-name="libproject" />
-    <orderEntry type="module" module-name="domain" />
-    <orderEntry type="module" module-name="libthird" />
-    <orderEntry type="module" module-name="libwidgets" />
-    <orderEntry type="module" module-name="libproject" />
-    <orderEntry type="module" module-name="domain" />
-    <orderEntry type="module" module-name="libthird" />
-    <orderEntry type="module" module-name="libwidgets" />
-    <orderEntry type="module" module-name="libproject" />
-    <orderEntry type="module" module-name="domain" />
-    <orderEntry type="module" module-name="libthird" />
-    <orderEntry type="module" module-name="libwidgets" />
-    <orderEntry type="module" module-name="libproject" />
-    <orderEntry type="module" module-name="domain" />
-    <orderEntry type="module" module-name="libthird" />
-    <orderEntry type="module" module-name="libwidgets" />
-    <orderEntry type="module" module-name="libproject" />
-    <orderEntry type="module" module-name="domain" />
-    <orderEntry type="module" module-name="libthird" />
-    <orderEntry type="module" module-name="libwidgets" />
     <orderEntry type="module" module-name="libproject" />
     <orderEntry type="module" module-name="domain" />
     <orderEntry type="module" module-name="libthird" />

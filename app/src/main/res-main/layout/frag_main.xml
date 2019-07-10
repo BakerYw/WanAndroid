@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,7 +16,7 @@
             android:textColor="@color/white"
             android:textSize="18sp" />
         <ImageView
-            android:id="@+id/circle_btn_add"
+            android:id="@+id/circle_btn_search"
             android:layout_width="22dp"
             android:layout_height="22dp"
             android:layout_alignParentEnd="true"
@@ -24,18 +25,48 @@
             android:src="@drawable/ic_search"
             android:gravity="center" />
     </RelativeLayout>
+
     <com.bakerj.base.widgets.refresh.CustomRefreshLayout
         android:id="@+id/refresh_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/bg_gray">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recycle_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:paddingStart="15dp"
-            android:paddingTop="10dp"
-            android:paddingEnd="15dp" />
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/banner_bg">
+                    <com.nyw.libwidgets.autoscrollviewpager.BGABanner
+                        android:id="@+id/home_banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/good_img_bg"
+                        app:banner_indicatorGravity="bottom|center_horizontal"
+                        app:banner_pageChangeDuration="3500"
+                        app:banner_pointContainerBackground="@color/transparent"
+                        app:banner_tipTextSize="12sp"
+                        app:banner_isNumberIndicator="false"
+                        app:banner_tipTextColor="@color/colorPrimaryDark"
+                        app:banner_transitionEffect="rotate"
+                        app:banner_viewAspectRatio="2" />
+                </FrameLayout>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recycle_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clipToPadding="false"
+                    android:nestedScrollingEnabled="false"
+                    android:paddingStart="15dp"
+                    android:paddingTop="10dp"
+                    android:paddingEnd="15dp" />
+             </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
     </com.bakerj.base.widgets.refresh.CustomRefreshLayout>
 </LinearLayout>

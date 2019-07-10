@@ -38,4 +38,8 @@
     <attr name="cpOverlayTextSize" format="dimension|reference" />
     <attr name="cpOverlayTextColor" format="color|reference" />
     <attr name="cpOverlayBackground" format="color|reference" />
+
+    <declare-styleable name="PowerImageView">
+        <attr name="auto_play" format="boolean"></attr>
+    </declare-styleable>
 </resources>

@@ -14,14 +14,14 @@ public class PageLoadMoreResponse<T> {
     private int size;
     private int total;
 
-    private List<T> list;
+    private List<T> datas;
 
-    public List<T> getList() {
-        return list;
+    public List<T> getDatas() {
+        return datas;
     }
 
-    public void setList(List<T> list) {
-        this.list = list;
+    public void setDatas(List<T> datas) {
+        this.datas = datas;
     }
 
     public int getCurPage() {

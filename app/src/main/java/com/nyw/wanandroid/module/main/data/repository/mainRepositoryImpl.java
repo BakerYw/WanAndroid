@@ -1,6 +1,5 @@
 package com.nyw.wanandroid.module.main.data.repository;
 
-import com.nyw.domain.common.api.WanApiResult;
 import com.nyw.domain.common.loadmore.PageLoadMoreResponse;
 import com.nyw.domain.domain.bean.request.home.HomeReq;
 import com.nyw.domain.domain.bean.response.home.ArticleBean;
@@ -24,14 +23,12 @@ public class mainRepositoryImpl implements ImainRepository{
 
 
     @Override
-    public Observable<List<ArticleBean>> getArticleBean(HomeReq body) {
-        return mRemoteDataStore.getArticleList(body).map(PageLoadMoreResponse::getList);
+    public Observable<PageLoadMoreResponse<ArticleBean>> getArticleBean(HomeReq body) {
+        return mRemoteDataStore.getArticleList(body);
     }
 
-
-
     @Override
-    public Observable<WanApiResult<List<BannerBean>>> getBanner() {
+    public Observable<List<BannerBean>> getBanner() {
         return mRemoteDataStore.getBannerList();
     }
 }

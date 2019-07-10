@@ -34,5 +34,5 @@ public interface mainApiService {
      * 首页banner
      */
     @GET(API.HomeAPI.banner)
-    Observable<WanApiResult<List<BannerBean>>> getBanner();
+    Observable<List<BannerBean>> getBanner();
 }

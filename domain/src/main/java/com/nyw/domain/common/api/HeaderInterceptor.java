@@ -25,13 +25,13 @@ public class HeaderInterceptor implements Interceptor {
             throw new ApiException(ApiException.NETWORK_NOT_OPEN, "无可用网络");
         }
         Request request = chain.request();
-        request = request.newBuilder()
-                .addHeader("regFrom", "1")
-                .addHeader("deviceOs", "1")
-                .addHeader("deviceId", DeviceUtils.getAndroidID())
-                .addHeader("deviceType", DeviceUtils.getModel())
-                .addHeader("version", String.valueOf(AppUtils.getAppVersionCode()))
-                .build();
+//        request = request.newBuilder()
+//                .addHeader("regFrom", "1")
+//                .addHeader("deviceOs", "1")
+//                .addHeader("deviceId", DeviceUtils.getAndroidID())
+//                .addHeader("deviceType", DeviceUtils.getModel())
+//                .addHeader("version", String.valueOf(AppUtils.getAppVersionCode()))
+//                .build();
         return chain.proceed(request);
     }
 }

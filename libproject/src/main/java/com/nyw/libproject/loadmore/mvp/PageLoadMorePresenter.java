@@ -15,7 +15,7 @@ import java.util.List;
 public abstract class PageLoadMorePresenter<View extends LoadMoreContract.View<DestModel>,
         Quest extends PageLoadMoreRequest, SrcModel, DestModel>
         extends LoadMorePresenter<View, Quest, SrcModel, DestModel> {
-    protected int Page = 1;
+    protected int page = 0;
     protected List<DestModel> mData = new ArrayList<>();
 
     public PageLoadMorePresenter(View view) {
@@ -26,9 +26,8 @@ public abstract class PageLoadMorePresenter<View extends LoadMoreContract.View<D
      * 刷新时当前页码重置
      */
     protected void setUpRefreshBody(Quest body) {
-        Page = 1;
-        body.setPageSize(10);
-        body.setCurrentPage(Page);
+        page=0;
+        body.setPage(page);
     }
 
     protected void refreshSuccess(List<DestModel> data) {
@@ -41,7 +40,7 @@ public abstract class PageLoadMorePresenter<View extends LoadMoreContract.View<D
     }
 
     protected void setUpLoadMoreBody(Quest body) {
-        body.setCurrentPage(Page);
+        body.setPage(page);
     }
 
     protected void loadMoreSuccess(List<DestModel> data) {
@@ -53,6 +52,6 @@ public abstract class PageLoadMorePresenter<View extends LoadMoreContract.View<D
      * 获得数据后页码+1
      */
     protected void doOnSourceGet(List<SrcModel> data) {
-        Page++;
+        page++;
     }
 }
