@@ -49,6 +49,12 @@ public class PathConstants {
     public static final String PATH_ORDER_LIST = PATH_GROUP_KNOWLEDGE + "/order/list";
     public static final String PATH_MALL_SEARCH = PATH_GROUP_KNOWLEDGE + "/search";
 
+    //scheme wechat
+    private static final String PATH_GROUP_WECHAT = "/wechat";
+    public static final String PATH_WECHAT = PATH_GROUP_WECHAT + "/home";
+    public static final String PATH_WECHAT_LIST = PATH_GROUP_WECHAT + "/home/list";
+
+
     //scheme me
     private static final String PATH_GROUP_ME = "/me";
     public static final String PATH_ME = PATH_GROUP_ME + "/mine";

@@ -54,7 +54,6 @@ public class KnowledgeArtFragment extends WanBasePresenterFragment<knowledgeArtP
     }
 
     private void initView() {
-        showLoading();
         refreshLayout.setEnableRefresh(true);
         refreshLayout.setEnableLoadMore(false);
         refreshLayout.setEnableAutoLoadMore(false);
@@ -73,6 +72,7 @@ public class KnowledgeArtFragment extends WanBasePresenterFragment<knowledgeArtP
     @Override
     protected void lazyLoadOnce() {
         super.lazyLoadOnce();
+        showLoading();
         mPresenter.getThreeBean();
     }
     @Override

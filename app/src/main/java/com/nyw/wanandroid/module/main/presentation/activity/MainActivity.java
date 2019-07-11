@@ -3,11 +3,13 @@ package com.nyw.wanandroid.module.main.presentation.activity;
 import android.graphics.Color;
 import android.os.Bundle;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.BarUtils;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.nyw.domain.common.util.cache.UserCacheUtil;
 import com.nyw.domain.domain.event.home.ToUserCenterEvent;
 import com.nyw.domain.domain.router.Navigation;
+import com.nyw.domain.domain.router.PathConstants;
 import com.nyw.libproject.common.activity.WanBaseActivity;
 import com.nyw.libproject.common.adapter.BasePagerAdapter;
 import com.nyw.libwidgets.scroll.TouchHandleViewPager;
@@ -18,6 +20,8 @@ import org.greenrobot.eventbus.EventBus;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+
+@Route(path = PathConstants.PATH_HOME)
 public class MainActivity extends WanBaseActivity {
     @BindView(R.id.home_nav)
     BottomNavigationViewEx homeNav;
@@ -40,7 +44,7 @@ public class MainActivity extends WanBaseActivity {
         homeVp.setOffscreenPageLimit(5);
         BasePagerAdapter adapter = new BasePagerAdapter(getSupportFragmentManager(),
                 Navigation.getCircleFragment(), Navigation.getKnowledgeFragment(),
-                Navigation.getKnowledgeFragment(),Navigation.getKnowledgeFragment(),Navigation.getKnowledgeFragment());
+                Navigation.getWechatFragment(),Navigation.getKnowledgeFragment(),Navigation.getKnowledgeFragment());
         homeVp.setAdapter(adapter);
     }
 

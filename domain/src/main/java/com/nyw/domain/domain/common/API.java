@@ -7,6 +7,7 @@ public class API {
         public static final String banner = "banner/json";//banner图
         public static final String tree = "tree/json";//知识体系
         public static final String navi = "navi/json";//导航
-
+        public static final String wxarticle_tab = "wxarticle/chapters/json";//公众号Tab
+        public static final String wxarticle_list = "wxarticle/list/{id}/{page}/json";//公众号Tab
     }
 }

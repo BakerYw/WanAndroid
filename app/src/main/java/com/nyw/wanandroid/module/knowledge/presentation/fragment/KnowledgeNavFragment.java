@@ -58,7 +58,6 @@ public class KnowledgeNavFragment extends WanBasePresenterFragment<knowledgeNavi
     }
 
     private void initView() {
-        showLoading();
         refreshLayout.setEnableRefresh(true);
         refreshLayout.setEnableLoadMore(false);
         refreshLayout.setEnableAutoLoadMore(false);
@@ -116,10 +115,9 @@ public class KnowledgeNavFragment extends WanBasePresenterFragment<knowledgeNavi
 
     }
 
-
-
     @Override
     protected void lazyLoadOnce() {
+        showLoading();
         super.lazyLoadOnce();
         mPresenter.getNaviBean();
     }

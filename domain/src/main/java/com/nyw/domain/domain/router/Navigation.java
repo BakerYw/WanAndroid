@@ -166,7 +166,15 @@ public class Navigation {
                .navigation();
     }
 
+    //Wechat
+    public static Fragment getWechatFragment() {
+        return (Fragment) ARouter.getInstance().build(PathConstants.PATH_WECHAT).navigation();
+    }
 
+    public static Fragment getWechatListFragment(int subcat) {
+        return (Fragment) ARouter.getInstance().build(PathConstants.PATH_WECHAT_LIST)
+                .withInt("subcat", subcat).navigation(ActivityUtils.getTopActivity());
+    }
     public static void navigateToGoodDetail(long itemId) {
         ARouter.getInstance().build(PathConstants.PATH_GOOD_DETAIL)
                 .withLong("itemId", itemId).navigation();

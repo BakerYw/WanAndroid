@@ -28,7 +28,7 @@
 
     <style name="LaunchActivity" parent="FullScreen">
         <!--<item name="android:windowBackground">@mipmap/launch</item>-->
-        <item name="android:windowBackground">@android:color/white</item>
+        <item name="android:windowBackground">@color/colorPrimary</item>
     </style>
 
     <style name="TabStyle">
