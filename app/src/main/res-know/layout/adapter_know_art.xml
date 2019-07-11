@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/bg_gray"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="16dp"
+        android:textColor="@color/text_black"
+        android:textSize="@dimen/sp_14"
+        tools:text="公众号文章列表强势上线" />
+
+    <com.nyw.libwidgets.floatlayout.FloatLayout
+        android:id="@+id/fbl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:qmui_childVerticalSpacing="@dimen/dp_10"
+        app:qmui_childHorizontalSpacing="@dimen/dp_10"
+        android:layout_marginLeft="11dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="11dp"
+        android:layout_marginBottom="5dp" />
+</LinearLayout>

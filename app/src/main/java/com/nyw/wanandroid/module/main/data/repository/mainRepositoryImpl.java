@@ -1,15 +1,7 @@
 package com.nyw.wanandroid.module.main.data.repository;
 
-import com.nyw.domain.common.loadmore.PageLoadMoreResponse;
-import com.nyw.domain.domain.bean.request.home.HomeReq;
-import com.nyw.domain.domain.bean.response.home.ArticleBean;
-import com.nyw.domain.domain.bean.response.home.BannerBean;
 import com.nyw.wanandroid.module.main.data.repository.datastore.mainLocalDataStore;
 import com.nyw.wanandroid.module.main.data.repository.datastore.mainRemoteDataStore;
-
-import java.util.List;
-
-import io.reactivex.Observable;
 
 /**
  * @author nyw

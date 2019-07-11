@@ -10,31 +10,23 @@ import android.widget.TextView;
 
 import com.blankj.utilcode.util.ConvertUtils;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.nyw.domain.common.widget.CollectView;
-import com.nyw.domain.domain.bean.response.home.ArticleBean;
+import com.nyw.domain.domain.bean.response.home.ArticlesBean;
 import com.nyw.libwidgets.utils.img.CustomRoundedCornersTransformation;
-import com.nyw.libwidgets.utils.img.GlideUtil;
 import com.nyw.wanandroid.R;
-import com.nyw.wanandroid.module.main.presentation.activity.MainActivity;
-import com.nyw.wanandroid.utils.DateUtil;
-import com.yalantis.ucrop.view.OverlayView;
-
-import retrofit2.http.HEAD;
 
 
-public class HomeAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder>{
+public class HomeAdapter extends BaseQuickAdapter<ArticlesBean, BaseViewHolder>{
 
     public HomeAdapter() {
         super(R.layout.adapter_home);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, ArticleBean item) {
+    protected void convert(BaseViewHolder helper, ArticlesBean item) {
         helper.setText(R.id.tv_title, Html.fromHtml(item.getTitle()))
                 .setText(R.id.tv_author,item.getAuthor())
                 .setText(R.id.tv_time, item.getNiceDate())

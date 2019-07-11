@@ -8,7 +8,7 @@ import com.blankj.utilcode.util.ConvertUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
-import com.nyw.domain.domain.bean.response.home.ArticleBean;
+import com.nyw.domain.domain.bean.response.home.ArticlesBean;
 import com.nyw.domain.domain.bean.response.home.BannerBean;
 import com.nyw.domain.domain.router.Navigation;
 import com.nyw.domain.domain.router.PathConstants;
@@ -26,11 +26,14 @@ import butterknife.BindView;
 
 @Route(path = PathConstants.PATH_CIRCLE)
 public class HomeFragment extends WanBaseListPresenterFragment<homePresenter, HomeAdapter,
-        ArticleBean> implements homeContract.View {
+        ArticlesBean> implements homeContract.View{
     @BindView(R.id.circle_btn_search)
     ImageView circle_btn_search;
     @BindView(R.id.home_banner)
     BGABanner homeBanner;
+
+    private List<View> mHeaderTopItemViews;
+
     //List<String> Bannertitle=new ArrayList<>();
     @Override
     protected int getLayoutId() {
@@ -53,6 +56,7 @@ public class HomeFragment extends WanBaseListPresenterFragment<homePresenter, Ho
         super.afterInitView();
         mRefreshLayout.setEnableLoadMoreWhenContentNotFull(true);
         mPresenter.getBanner();
+        mPresenter.getTopArticleBean();
     }
 
     @Override
@@ -60,9 +64,11 @@ public class HomeFragment extends WanBaseListPresenterFragment<homePresenter, Ho
         super.lazyLoadOnce();
         refresh();
     }
-
     @Override
-    public void refreshSucceed(List<ArticleBean> resultList, boolean hasMore) {
+    public void TopArticleBeanGet(List<ArticlesBean> bannerBeans) {
+    }
+    @Override
+    public void refreshSucceed(List<ArticlesBean> resultList, boolean hasMore) {
         mAdapter.addData(0, resultList);
         mAdapter.notifyDataSetChanged();
         mRefreshLayout.finishRefresh(0, true, !hasMore);
@@ -90,5 +96,7 @@ public class HomeFragment extends WanBaseListPresenterFragment<homePresenter, Ho
             homeBanner.setData(bannerBeans, null);
         }
     }
+
+
 
 }

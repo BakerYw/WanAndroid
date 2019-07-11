@@ -1,18 +1,5 @@
 package com.nyw.wanandroid.module.main.data.api;
 
-import com.nyw.domain.common.api.WanApiResult;
-import com.nyw.domain.common.loadmore.PageLoadMoreResponse;
-import com.nyw.domain.domain.bean.response.home.ArticleBean;
-import com.nyw.domain.domain.bean.response.home.BannerBean;
-import com.nyw.domain.domain.common.API;
-
-import java.util.List;
-
-import io.reactivex.Observable;
-import retrofit2.http.GET;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
-
 /**
  * @author nyw
  * @date 2019/06/27
