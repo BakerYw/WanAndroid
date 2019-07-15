@@ -117,7 +117,7 @@ android {
     sourceSets {
         main {
             //jniLibs.srcDirs = ['libs']
-            res.srcDirs = ['src/main/res','src/main/res-home','src/main/res-know']
+            res.srcDirs = ['src/main/res','src/main/res-home','src/main/res-know','src/main/res-mine']
         }
     }
 }

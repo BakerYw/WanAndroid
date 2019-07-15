@@ -54,6 +54,10 @@ public class PathConstants {
     public static final String PATH_WECHAT = PATH_GROUP_WECHAT + "/home";
     public static final String PATH_WECHAT_LIST = PATH_GROUP_WECHAT + "/home/list";
 
+    //scheme project
+    private static final String PATH_GROUP_PROJECT = "/project";
+    public static final String PATH_PROJECT = PATH_GROUP_PROJECT + "/home";
+    public static final String PATH_PROJECT_LIST = PATH_GROUP_PROJECT + "/home/list";
 
     //scheme me
     private static final String PATH_GROUP_ME = "/me";

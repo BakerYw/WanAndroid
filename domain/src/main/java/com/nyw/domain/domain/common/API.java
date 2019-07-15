@@ -9,5 +9,7 @@ public class API {
         public static final String navi = "navi/json";//导航
         public static final String wxarticle_tab = "wxarticle/chapters/json";//公众号Tab
         public static final String wxarticle_list = "wxarticle/list/{id}/{page}/json";//公众号Tab
+        public static final String project_tab = "project/tree/json";//公众号Tab
+        public static final String project_list = "project/list/{page}/json";//公众号Tab
     }
 }

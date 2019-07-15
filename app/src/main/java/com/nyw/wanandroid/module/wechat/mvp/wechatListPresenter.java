@@ -1,13 +1,8 @@
 package com.nyw.wanandroid.module.wechat.mvp;
 
-import com.bakerj.rxretrohttp.RxRetroHttp;
-import com.blankj.utilcode.util.ToastUtils;
 import com.nyw.domain.common.loadmore.PageLoadMoreResponse;
-import com.nyw.domain.domain.bean.request.home.HomeReq;
 import com.nyw.domain.domain.bean.request.wechat.WechatReq;
 import com.nyw.domain.domain.bean.response.home.ArticlesBean;
-import com.nyw.domain.domain.bean.response.home.KnowledgeArtBean;
-import com.nyw.libproject.common.api.CBApiObserver;
 import com.nyw.wanandroid.module.wechat.data.repository.IwechatRepository;
 import com.nyw.wanandroid.module.wechat.data.repository.wechatRepositoryImpl;
 
@@ -28,8 +23,8 @@ public class wechatListPresenter extends wechatListContract.Presenter{
     public wechatListPresenter(wechatListContract.View view,int id) {
         super(view);
         this.id=id;
-        ToastUtils.showLong(id+"");
     }
+
     @Override
     protected WechatReq getQuestBody() {
         WechatReq req = new WechatReq();

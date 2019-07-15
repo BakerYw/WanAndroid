@@ -17,8 +17,7 @@
             app:tabIndicatorHeight="0dp"
             app:tabMode="scrollable"
             app:tabSelectedTextColor="@color/white"
-            app:tabTextAppearance="@style/TabStyle"
-            app:tabTextColor="#686868" />
+            app:tabTextAppearance="@style/TabStyle" />
     </LinearLayout>
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/mall_vp"

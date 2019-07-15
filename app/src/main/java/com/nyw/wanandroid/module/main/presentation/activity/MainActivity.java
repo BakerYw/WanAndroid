@@ -44,7 +44,7 @@ public class MainActivity extends WanBaseActivity {
         homeVp.setOffscreenPageLimit(5);
         BasePagerAdapter adapter = new BasePagerAdapter(getSupportFragmentManager(),
                 Navigation.getCircleFragment(), Navigation.getKnowledgeFragment(),
-                Navigation.getWechatFragment(),Navigation.getKnowledgeFragment(),Navigation.getKnowledgeFragment());
+                Navigation.getWechatFragment(),Navigation.getProjectFragment(),Navigation.getMeFragment());
         homeVp.setAdapter(adapter);
     }
 
@@ -70,6 +70,10 @@ public class MainActivity extends WanBaseActivity {
                 case R.id.nav_project:
                     preIndex = 3;
                     homeVp.setCurrentItem(3, false);
+                    break;
+                case R.id.nav_me:
+                    preIndex = 4;
+                    homeVp.setCurrentItem(4, false);
                     break;
                 default:
                     homeNav.postDelayed(() -> homeNav.setCurrentItem(preIndex), 500);
