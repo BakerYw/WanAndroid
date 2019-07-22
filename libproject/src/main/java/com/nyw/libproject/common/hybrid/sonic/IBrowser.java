@@ -8,6 +8,5 @@ import android.app.Activity;
  */
 public interface IBrowser {
     Activity getActivity();
-
     void onPageLoadFinish();
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="cp_colorPrimary">#3F51B5</color>
-    <color name="cp_colorPrimaryDark">#303F9F</color>
-    <color name="cp_colorAccent">#3F51B5</color>
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#2196F3</color>
+    <color name="colorAccent">#2196F3</color>
     <color name="cp_color_gray_light">#cdcdcd</color>
     <color name="cp_color_gray">#999999</color>
     <color name="cp_color_gray_deep">#666666</color>

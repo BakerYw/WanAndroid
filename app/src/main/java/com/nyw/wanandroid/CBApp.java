@@ -1,5 +1,8 @@
 package com.nyw.wanandroid;
 
+import android.content.Context;
+
+import androidx.multidex.MultiDex;
 import androidx.multidex.MultiDexApplication;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -11,6 +14,8 @@ import com.nyw.domain.common.api.HeaderInterceptor;
 import com.scwang.smartrefresh.header.MaterialHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
+import com.tencent.bugly.Bugly;
+import com.tencent.bugly.beta.Beta;
 
 public class CBApp extends MultiDexApplication {
     @Override
@@ -49,6 +54,15 @@ public class CBApp extends MultiDexApplication {
     }
 
     private void thirdInit() {
+        Bugly.init(getApplicationContext(), "f1d4edd3cb", true);
+    }
 
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        // you must install multiDex whatever tinker is installed!
+        MultiDex.install(base);
+        // 安装tinker
+        Beta.installTinker();
     }
 }

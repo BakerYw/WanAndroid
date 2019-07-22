@@ -2,25 +2,29 @@
 <resources>
     <paths>
         <root-path
-            name="caibin"
+            name="wan"
             path="" />
         <external-path
-            name="caibin_DCIM"
+            name="wan_DCIM"
             path="DCIM/caibin" />
         <external-path
-            name="caibin_Pictures"
-            path="Pictures/caibin" />
+            name="wan_Pictures"
+            path="Pictures/wan" />
         <files-path
-            name="caibin_private_files"
+            name="wan_private_files"
             path="images" />
         <cache-path
-            name="caibin_private_cache"
+            name="wan_private_cache"
             path="images" />
         <external-files-path
-            name="caibin_external_files"
+            name="wan_external_files"
             path="Pictures" />
         <external-cache-path
-            name="caibin_external_cache"
+            name="wan_external_cache"
             path="" />
+        <!-- /storage/emulated/0/Download/${applicationId}/.beta/apk-->
+        <external-path name="beta_external_path" path="Download/"/>
+        <!--/storage/emulated/0/Android/data/${applicationId}/files/apk/-->
+        <external-path name="beta_external_files_path" path="Android/data/"/>
     </paths>
 </resources>

@@ -8,6 +8,7 @@ import com.blankj.utilcode.util.ConvertUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.nyw.domain.domain.bean.response.home.ArticlesBean;
 import com.nyw.domain.domain.bean.response.home.BannerBean;
 import com.nyw.domain.domain.router.Navigation;
@@ -57,6 +58,12 @@ public class HomeFragment extends WanBaseListPresenterFragment<homePresenter, Ho
         mRefreshLayout.setEnableLoadMoreWhenContentNotFull(true);
         mPresenter.getBanner();
         mPresenter.getTopArticleBean();
+        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Navigation.navigateToWeb(mAdapter.getData().get(position).getLink());
+            }
+        });
     }
 
     @Override

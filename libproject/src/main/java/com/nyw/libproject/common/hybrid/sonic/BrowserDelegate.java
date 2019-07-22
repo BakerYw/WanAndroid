@@ -1,26 +1,16 @@
 package com.nyw.libproject.common.hybrid.sonic;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.text.TextUtils;
+import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 import android.view.WindowManager;
-import android.webkit.WebChromeClient;
-import android.webkit.WebResourceRequest;
-import android.webkit.WebResourceResponse;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
-
-import com.blankj.utilcode.util.NetworkUtils;
-import com.nyw.domain.common.util.cache.SettingCacheUtil;
-import com.nyw.domain.domain.router.Navigation;
-import com.nyw.domain.domain.router.PathConstants;
 import com.tencent.sonic.sdk.SonicCacheInterceptor;
 import com.tencent.sonic.sdk.SonicConfig;
 import com.tencent.sonic.sdk.SonicConstants;
@@ -32,6 +22,7 @@ import com.tencent.sonic.sdk.SonicSessionConnectionInterceptor;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.List;
@@ -51,16 +42,11 @@ public class BrowserDelegate {
             return;
         }
         this.url = url;
-//        webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
-        WebSettings webSettings = webView.getSettings();
-        webSettings.setUserAgentString("MMYY-Android");
-
+        webView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
         Activity activity = iBrowser.getActivity();
         Intent intent = activity.getIntent();
         int mode = SonicMode.MODE_SONIC;
-
         activity.getWindow().addFlags(WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
-
         // init sonic engine if necessary, or maybe u can do this when application created
         if (!SonicEngine.isGetInstanceAllowed()) {
             SonicEngine.createInstance(new SonicRuntimeImpl(activity.getApplication(), webView
@@ -103,49 +89,55 @@ public class BrowserDelegate {
 //                Toast.makeText(this, "create sonic session fail!", Toast.LENGTH_LONG).show();
             }
         }
-        webView.setWebChromeClient(new WebChromeClient());
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public void onPageFinished(WebView view, String url) {
-                super.onPageFinished(view, url);
-                if (sonicSession != null) {
-                    sonicSession.getSessionClient().pageFinish(url);
-                }
+//        webView.setWebChromeClient(new WebChromeClient(){
+//            @Override
+//            public void onProgressChanged(WebView view, int newProgress) {
+//                super.onProgressChanged(view, newProgress);
+//                iBrowser.onPageLoadFinish();
+//            }
+//        });
+//        webView.setWebViewClient(new WebViewClient() {
+//            @Override
+//            public void onPageFinished(WebView view, String url) {
+//                super.onPageFinished(view, url);
+//                if (sonicSession != null) {
+//                    sonicSession.getSessionClient().pageFinish(url);
+//                }
                 iBrowser.onPageLoadFinish();
-            }
+//            }
+//
+//            @TargetApi(21)
+//            @Override
+//            public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest
+//                    request) {
+//                return shouldInterceptRequest(view, request.getUrl().toString());
+//            }
+//
+//            @Override
+//            public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
+//                if (sonicSession != null) {
+//                    return (WebResourceResponse) sonicSession.getSessionClient().requestResource
+//                            (url);
+//                }
+//                return null;
+//            }
+//
+//            @Override
+//            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+//                if (PathConstants.supportPath.contains(Uri.parse(url).getPath())) {
+//                    Navigation.urlNavigation(url);
+//                    return false;
+//                }
+//                return DeepLinkUtils.shouldOverrideUrlLoadingByApp(view, url, activity);
+//            }
+//        });
 
-            @TargetApi(21)
-            @Override
-            public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest
-                    request) {
-                return shouldInterceptRequest(view, request.getUrl().toString());
-            }
-
-            @Override
-            public WebResourceResponse shouldInterceptRequest(WebView view, String url) {
-                if (sonicSession != null) {
-                    return (WebResourceResponse) sonicSession.getSessionClient().requestResource
-                            (url);
-                }
-                return null;
-            }
-
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                if (PathConstants.supportPath.contains(Uri.parse(url).getPath())) {
-                    Navigation.urlNavigation(url);
-                    return false;
-                }
-                return DeepLinkUtils.shouldOverrideUrlLoadingByApp(view, url, activity);
-            }
-        });
-
-        webView.setDownloadListener((urlDownload, userAgent, contentDisposition, mimetype,
-                                     contentLength) -> {
-            Uri uri = Uri.parse(urlDownload);
-            Intent intent1 = new Intent(Intent.ACTION_VIEW, uri);
-            activity.startActivity(intent1);
-        });
+//        webView.setDownloadListener((urlDownload, userAgent, contentDisposition, mimetype,
+//                                     contentLength) -> {
+//            Uri uri = Uri.parse(urlDownload);
+//            Intent intent1 = new Intent(Intent.ACTION_VIEW, uri);
+//            activity.startActivity(intent1);
+//        });
 
         // add java script interface
         // note:if api level lower than 17(android 4.2), addJavascriptInterface has security
@@ -157,25 +149,25 @@ public class BrowserDelegate {
 //                "sonic");
 
         // init webview settings
-        webSettings.setJavaScriptEnabled(true);
-        webSettings.setBuiltInZoomControls(false);
-        webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
-        webSettings.setAllowContentAccess(true);
-        webSettings.setDatabaseEnabled(true);
-        webSettings.setDomStorageEnabled(true);
-        webSettings.setAppCacheEnabled(true);
-        webSettings.setSavePassword(false);
-        webSettings.setSaveFormData(false);
-        webSettings.setUseWideViewPort(true);
-        webSettings.setLoadWithOverviewMode(true);
-        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NORMAL);
-        boolean blockImage = !NetworkUtils.isWifiConnected() && !SettingCacheUtil
-                .getImgNoWifiEnable();
-        webSettings.setBlockNetworkImage(blockImage);
-        webSettings.setLoadsImagesAutomatically(!blockImage);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
-        }
+//        webSettings.setJavaScriptEnabled(true);
+//        webSettings.setBuiltInZoomControls(false);
+//        webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
+//        webSettings.setAllowContentAccess(true);
+//        webSettings.setDatabaseEnabled(true);
+//        webSettings.setDomStorageEnabled(true);
+//        webSettings.setAppCacheEnabled(true);
+//        webSettings.setSavePassword(false);
+//        webSettings.setSaveFormData(false);
+//        webSettings.setUseWideViewPort(true);
+//        webSettings.setLoadWithOverviewMode(true);
+//        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NORMAL);
+//        boolean blockImage = !NetworkUtils.isWifiConnected() && !SettingCacheUtil
+//                .getImgNoWifiEnable();
+//        webSettings.setBlockNetworkImage(blockImage);
+//        webSettings.setLoadsImagesAutomatically(!blockImage);
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+//            webSettings.setMixedContentMode(WebSettings.MIXED_CONTENT_ALWAYS_ALLOW);
+//        }
         // webview is ready now, just tell session client to bind
         if (sonicSessionClient != null) {
             sonicSessionClient.bindWebView(webView);
@@ -218,17 +210,17 @@ public class BrowserDelegate {
 
         @Override
         protected int internalConnect() {
-//            Context ctx = context.get();
-//            if (null != ctx) {
-//                try {
-//                    InputStream offlineHtmlInputStream = ctx.getAssets().open("sonic-demo-index" +
-//                            ".html");
-//                    responseStream = new BufferedInputStream(offlineHtmlInputStream);
-//                    return SonicConstants.ERROR_CODE_SUCCESS;
-//                } catch (Throwable e) {
-//                    e.printStackTrace();
-//                }
-//            }
+            Context ctx = context.get();
+            if (null != ctx) {
+                try {
+                    InputStream offlineHtmlInputStream = ctx.getAssets().open("sonic-demo-index" +
+                            ".html");
+                    responseStream = new BufferedInputStream(offlineHtmlInputStream);
+                    return SonicConstants.ERROR_CODE_SUCCESS;
+                } catch (Throwable e) {
+                    e.printStackTrace();
+                }
+            }
             return SonicConstants.ERROR_CODE_UNKNOWN;
         }
 
