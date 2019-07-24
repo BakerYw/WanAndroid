@@ -3,7 +3,7 @@ package com.nyw.wanandroid.module.project.mvp;
 
 import com.nyw.domain.common.loadmore.PageLoadMoreResponse;
 import com.nyw.domain.domain.bean.request.project.ProjectReq;
-import com.nyw.domain.domain.bean.response.home.ArticlesBean;
+import com.nyw.domain.domain.bean.response.home.ArticleBean;
 import com.nyw.wanandroid.module.project.data.repository.IprojectRepository;
 import com.nyw.wanandroid.module.project.data.repository.projectRepositoryImpl;
 
@@ -41,18 +41,18 @@ public class projectListPresenter extends projectListContract.Presenter{
     }
 
     @Override
-    protected boolean hasMore(List<ArticlesBean> data) {
+    protected boolean hasMore(List<ArticleBean> data) {
         return true;
     }
 
     @Override
-    protected Observable<List<ArticlesBean>> getRefreshLoadObservable(ProjectReq body) {
+    protected Observable<List<ArticleBean>> getRefreshLoadObservable(ProjectReq body) {
         return mRepository.getArticleBean(body).map(PageLoadMoreResponse::getDatas);
     }
 
     @Override
-    protected ArticlesBean castDataToDest(ArticlesBean articlesBean) {
-        return articlesBean;
+    protected ArticleBean castDataToDest(ArticleBean articleBean) {
+        return articleBean;
     }
 
 

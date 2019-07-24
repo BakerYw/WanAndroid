@@ -4,9 +4,8 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.nyw.domain.domain.bean.response.home.ArticlesBean;
+import com.nyw.domain.domain.bean.response.home.ArticleBean;
 import com.nyw.domain.domain.router.Navigation;
 import com.nyw.domain.domain.router.PathConstants;
 import com.nyw.libproject.common.fragment.WanBaseListPresenterFragment;
@@ -21,7 +20,7 @@ import icepick.State;
 
 @Route(path = PathConstants.PATH_WECHAT_LIST)
 public class WechatListFragment extends WanBaseListPresenterFragment<wechatListPresenter, HomeAdapter,
-        ArticlesBean> implements wechatListContract.View {
+        ArticleBean> implements wechatListContract.View {
     @Autowired
     @State
     int subcat;
@@ -57,7 +56,7 @@ public class WechatListFragment extends WanBaseListPresenterFragment<wechatListP
     }
 
     @Override
-    public void refreshSucceed(List<ArticlesBean> resultList, boolean hasMore) {
+    public void refreshSucceed(List<ArticleBean> resultList, boolean hasMore) {
         mAdapter.setNewData(resultList);
         mAdapter.notifyDataSetChanged();
         super.refreshSucceed(resultList, hasMore);

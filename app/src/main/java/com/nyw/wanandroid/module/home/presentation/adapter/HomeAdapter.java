@@ -14,19 +14,19 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.nyw.domain.domain.bean.response.home.ArticlesBean;
+import com.nyw.domain.domain.bean.response.home.ArticleBean;
 import com.nyw.libwidgets.utils.img.CustomRoundedCornersTransformation;
 import com.nyw.wanandroid.R;
 
 
-public class HomeAdapter extends BaseQuickAdapter<ArticlesBean, BaseViewHolder>{
+public class HomeAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder>{
 
     public HomeAdapter() {
         super(R.layout.adapter_home);
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, ArticlesBean item) {
+    protected void convert(BaseViewHolder helper, ArticleBean item) {
         helper.setText(R.id.tv_title, Html.fromHtml(item.getTitle()))
                 .setText(R.id.tv_author,item.getAuthor())
                 .setText(R.id.tv_time, item.getNiceDate())

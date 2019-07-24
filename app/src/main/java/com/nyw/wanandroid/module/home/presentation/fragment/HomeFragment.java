@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.nyw.domain.domain.bean.response.home.ArticlesBean;
+import com.nyw.domain.domain.bean.response.home.ArticleBean;
 import com.nyw.domain.domain.bean.response.home.BannerBean;
 import com.nyw.domain.domain.router.Navigation;
 import com.nyw.domain.domain.router.PathConstants;
@@ -32,13 +32,13 @@ import butterknife.BindView;
 
 @Route(path = PathConstants.PATH_CIRCLE)
 public class HomeFragment extends WanBaseListPresenterFragment<HomePresenter, HomeAdapter,
-        ArticlesBean> implements HomeContract.View{
+        ArticleBean> implements HomeContract.View{
     @BindView(R.id.circle_btn_search)
     ImageView circle_btn_search;
     @BindView(R.id.home_banner)
     BGABanner homeBanner;
     private List<View> mHeaderTopItemViews;
-    private List<ArticlesBean> mHeaderTopItemBeans;
+    private List<ArticleBean> mHeaderTopItemBeans;
     @Override
     protected int getLayoutId() {
         return R.layout.frag_home;
@@ -76,11 +76,11 @@ public class HomeFragment extends WanBaseListPresenterFragment<HomePresenter, Ho
         refresh();
     }
     @Override
-    public void TopArticleBeanGet(List<ArticlesBean> data) {
+    public void TopArticleBeanGet(List<ArticleBean> data) {
         createHeaderTopItem(data);
     }
 
-    private void createHeaderTopItem(List<ArticlesBean> data) {
+    private void createHeaderTopItem(List<ArticleBean> data) {
         mHeaderTopItemBeans = data;
         if (mHeaderTopItemViews != null) {
             for (View view : mHeaderTopItemViews) {
@@ -98,13 +98,13 @@ public class HomeFragment extends WanBaseListPresenterFragment<HomePresenter, Ho
         }
         for (int i = 0; i < mHeaderTopItemViews.size(); i++) {
             View view = mHeaderTopItemViews.get(i);
-            ArticlesBean bean = mHeaderTopItemBeans.get(i);
+            ArticleBean bean = mHeaderTopItemBeans.get(i);
             bindHeaderTopItem(view, bean);
             mAdapter.addHeaderView(view);
         }
     }
 
-    private void bindHeaderTopItem(View view, ArticlesBean item) {
+    private void bindHeaderTopItem(View view, ArticleBean item) {
         TextView tv_title = view.findViewById(R.id.tv_title);
         TextView tv_author = view.findViewById(R.id.tv_author);
         TextView tv_time = view.findViewById(R.id.tv_time);
@@ -159,7 +159,7 @@ public class HomeFragment extends WanBaseListPresenterFragment<HomePresenter, Ho
 
 
     @Override
-    public void refreshSucceed(List<ArticlesBean> resultList, boolean hasMore) {
+    public void refreshSucceed(List<ArticleBean> resultList, boolean hasMore) {
         mAdapter.setNewData(resultList);
         mAdapter.notifyDataSetChanged();
         mRefreshLayout.finishRefresh(0, true, !hasMore);

@@ -11,7 +11,7 @@ public class KnowledgeNavBean {
 
         private int cid;
         private String name;
-        private List<ArticlesBean> articles;
+        private List<ArticleBean> articles;
 
         public int getCid() {
             return cid;
@@ -29,11 +29,11 @@ public class KnowledgeNavBean {
             this.name = name;
         }
 
-        public List<ArticlesBean> getArticles() {
+        public List<ArticleBean> getArticles() {
             return articles;
         }
 
-        public void setArticles(List<ArticlesBean> articles) {
+        public void setArticles(List<ArticleBean> articles) {
             this.articles = articles;
         }
 }

@@ -5,7 +5,7 @@ import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.nyw.domain.domain.bean.response.home.ArticlesBean;
+import com.nyw.domain.domain.bean.response.home.ArticleBean;
 import com.nyw.domain.domain.router.Navigation;
 import com.nyw.domain.domain.router.PathConstants;
 import com.nyw.libproject.common.fragment.WanBaseListPresenterFragment;
@@ -18,7 +18,7 @@ import java.util.List;
 
 @Route(path = PathConstants.PATH_SEARCH_RESULT)
 public class SearchResultFragment extends WanBaseListPresenterFragment<SearchResultPresenter, HomeAdapter,
-        ArticlesBean> implements SearchResultContract.View{
+        ArticleBean> implements SearchResultContract.View{
     @Override
     protected void afterInitView() {
         super.afterInitView();
@@ -42,7 +42,7 @@ public class SearchResultFragment extends WanBaseListPresenterFragment<SearchRes
         return new HomeAdapter();
     }
     @Override
-    public void refreshSucceed(List<ArticlesBean> resultList, boolean hasMore) {
+    public void refreshSucceed(List<ArticleBean> resultList, boolean hasMore) {
         mAdapter.setNewData(resultList);
         mAdapter.notifyDataSetChanged();
         mRefreshLayout.finishRefresh(0, true, !hasMore);

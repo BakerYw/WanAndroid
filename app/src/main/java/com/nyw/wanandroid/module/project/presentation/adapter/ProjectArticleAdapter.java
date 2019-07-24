@@ -13,7 +13,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.nyw.domain.domain.bean.response.home.ArticlesBean;
+import com.nyw.domain.domain.bean.response.home.ArticleBean;
 import com.nyw.libwidgets.others.CollectView;
 import com.nyw.libwidgets.utils.img.CustomRoundedCornersTransformation;
 import com.nyw.wanandroid.R;
@@ -25,7 +25,7 @@ import com.nyw.wanandroid.R;
  * E-mail: goweii@163.com
  * GitHub: https://github.com/goweii
  */
-public class ProjectArticleAdapter extends BaseQuickAdapter<ArticlesBean, BaseViewHolder> {
+public class ProjectArticleAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder> {
 
     private OnCollectViewClickListener mOnCollectViewClickListener = null;
 
@@ -38,7 +38,7 @@ public class ProjectArticleAdapter extends BaseQuickAdapter<ArticlesBean, BaseVi
     }
 
     @Override
-    protected void convert(BaseViewHolder helper, ArticlesBean item) {
+    protected void convert(BaseViewHolder helper, ArticleBean item) {
         TextView tv_title = helper.getView(R.id.tv_title);
         TextView tv_desc = helper.getView(R.id.tv_desc);
         if (TextUtils.isEmpty(item.getDesc())) {

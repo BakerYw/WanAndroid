@@ -1,9 +1,14 @@
 package com.nyw.domain.domain.bean.response.home;
 
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.InputStream;
+import java.io.Serializable;
 import java.util.List;
 
-public class KnowledgeArtBean {
+public class KnowledgeArtBean implements Serializable{
 
         /**
          * children : [{"children":[],"courseId":13,"id":60,"name":"Android Studio相关","order":1000,"parentChapterId":150,"userControlSetTop":false,"visible":1},{"children":[],"courseId":13,"id":169,"name":"gradle","order":1001,"parentChapterId":150,"userControlSetTop":false,"visible":1},{"children":[],"courseId":13,"id":269,"name":"官方发布","order":1002,"parentChapterId":150,"userControlSetTop":false,"visible":1}]
@@ -24,6 +29,8 @@ public class KnowledgeArtBean {
         private boolean userControlSetTop;
         private int visible;
         private List<KnowledgeArtBean> children;
+
+
 
         public int getCourseId() {
             return courseId;

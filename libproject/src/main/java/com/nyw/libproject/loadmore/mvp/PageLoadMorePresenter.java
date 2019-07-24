@@ -15,7 +15,7 @@ import java.util.List;
 public abstract class PageLoadMorePresenter<View extends LoadMoreContract.View<DestModel>,
         Quest extends PageLoadMoreRequest, SrcModel, DestModel>
         extends LoadMorePresenter<View, Quest, SrcModel, DestModel> {
-    protected int page = 0;
+    protected int page=0;
     protected List<DestModel> mData = new ArrayList<>();
 
     public PageLoadMorePresenter(View view) {

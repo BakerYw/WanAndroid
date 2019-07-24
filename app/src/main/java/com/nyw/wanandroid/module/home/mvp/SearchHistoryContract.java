@@ -2,9 +2,7 @@ package com.nyw.wanandroid.module.home.mvp;
 
 import com.bakerj.base.BasePresenter;
 import com.bakerj.base.BaseView;
-import com.nyw.domain.domain.bean.response.home.ArticlesBean;
 import com.nyw.domain.domain.bean.response.home.HotkeyBean;
-import com.nyw.domain.domain.bean.response.home.KnowledgeArtBean;
 
 import java.util.List;
 

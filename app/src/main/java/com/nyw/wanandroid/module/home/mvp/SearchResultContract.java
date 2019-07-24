@@ -1,13 +1,9 @@
 package com.nyw.wanandroid.module.home.mvp;
 
 import com.bakerj.base.loadmore.mvp.LoadMoreContract;
-import com.nyw.domain.domain.bean.request.home.HomeReq;
 import com.nyw.domain.domain.bean.request.home.SearchReq;
-import com.nyw.domain.domain.bean.response.home.ArticlesBean;
-import com.nyw.domain.domain.bean.response.home.BannerBean;
+import com.nyw.domain.domain.bean.response.home.ArticleBean;
 import com.nyw.libproject.loadmore.mvp.PageLoadMorePresenter;
-
-import java.util.List;
 
 /**
  * @author nyw
@@ -17,13 +13,13 @@ import java.util.List;
  */
 public interface SearchResultContract {
     //泛型为返回的数据类型，即Adapter中展示的数据类型
-    interface View extends LoadMoreContract.View<ArticlesBean> {
+    interface View extends LoadMoreContract.View<ArticleBean> {
 
     }
 
     //具体泛型注释可查阅 {父基类LoadMorePresenter}
-    abstract class Presenter extends PageLoadMorePresenter<View, SearchReq, ArticlesBean,
-            ArticlesBean> {
+    abstract class Presenter extends PageLoadMorePresenter<View, SearchReq, ArticleBean,
+            ArticleBean> {
         public Presenter(View view) {
             super(view);
         }

@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-        <activity android:name=".module.home.presentation.activity.SearchActivity"></activity>
+        <activity android:name=".module.knowledge.presentation.activity.KnowledgeArtActivity"/>
+        <activity android:name=".module.home.presentation.activity.SearchActivity" />
 
         <uses-library
             android:name="org.apache.http.legacy"

@@ -9,8 +9,7 @@ import androidx.annotation.NonNull;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
-import com.nyw.domain.domain.bean.response.home.ArticlesBean;
-import com.nyw.domain.domain.bean.response.home.KnowledgeArtBean;
+import com.nyw.domain.domain.bean.response.home.ArticleBean;
 import com.nyw.domain.domain.bean.response.home.KnowledgeNavBean;
 import com.nyw.domain.domain.router.Navigation;
 import com.nyw.libwidgets.floatlayout.FloatLayout;
@@ -33,7 +32,7 @@ public class KnowledgeNavAdapter2 extends BaseQuickAdapter<KnowledgeNavBean, Bas
         helper.setText(R.id.tv_name, item.getName());
         FloatLayout fl = helper.getView(R.id.fbl);
         for (int i = 0; i < item.getArticles().size(); i++) {
-            ArticlesBean childItem = item.getArticles().get(i);
+            ArticleBean childItem = item.getArticles().get(i);
             TextView child = createOrGetCacheFlexItemTextView(fl);
             child.setText(childItem.getTitle());
             int finalI = i;

@@ -11,6 +11,7 @@ import com.alibaba.android.arouter.facade.callback.NavigationCallback;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.blankj.utilcode.util.ActivityUtils;
 import com.nyw.domain.common.Constants;
+import com.nyw.domain.domain.bean.response.home.KnowledgeArtBean;
 import com.nyw.domain.domain.event.IInterceptEvent;
 import com.nyw.domain.domain.event.InterceptJumpEvent;
 import com.nyw.libthird.sharelib.ThirdPartyLoginInfo;
@@ -165,11 +166,23 @@ public class Navigation {
         return (Fragment) ARouter.getInstance().build(PathConstants.PATH_KNOWLEDG_ART)
                 .navigation();
     }
+
     public static Fragment getNavFragment() {
         return (Fragment) ARouter.getInstance().build(PathConstants.PATH_KNOWLEDG_NAV)
                .navigation();
     }
 
+    public static void navigateToArtActivity(KnowledgeArtBean knowledgeArtBean, int pos) {
+        ARouter.getInstance().build(PathConstants.PATH_KNOWLEDGART_ACTIVITY)
+                .withSerializable("knowledgeArtBean",knowledgeArtBean)
+                .withInt("pos",pos)
+                .navigation();
+    }
+    public static Fragment getArtDetailFragment(int cid) {
+        return (Fragment) ARouter.getInstance().build(PathConstants.PATH_KNOWLEDG_DETAIL)
+                .withInt("cid",cid)
+                .navigation();
+    }
     //Wechat
     public static Fragment getWechatFragment() {
         return (Fragment) ARouter.getInstance().build(PathConstants.PATH_WECHAT).navigation();
@@ -189,23 +202,6 @@ public class Navigation {
         return (Fragment) ARouter.getInstance().build(PathConstants.PATH_PROJECT_LIST)
                 .withInt("subcat", subcat).navigation(ActivityUtils.getTopActivity());
     }
-
-
-    public static void navigateToGoodDetail(long itemId) {
-        ARouter.getInstance().build(PathConstants.PATH_GOOD_DETAIL)
-                .withLong("itemId", itemId).navigation();
-    }
-
-    public static void navigateToOrder(String title, String status) {
-        ARouter.getInstance().build(PathConstants.PATH_ORDER)
-                .withString("title", title).withString("status", status).navigation();
-    }
-
-    public static Fragment getOrderListFragment(String status) {
-        return (Fragment) ARouter.getInstance().build(PathConstants.PATH_ORDER_LIST)
-                .withString("status", status).navigation();
-    }
-
 
 
     //me

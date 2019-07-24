@@ -2,6 +2,7 @@ package com.nyw.wanandroid.module.knowledge.presentation.fragment;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bakerj.base.widgets.refresh.CustomRefreshLayout;
 import com.nyw.domain.domain.bean.response.home.KnowledgeArtBean;
+import com.nyw.domain.domain.router.Navigation;
 import com.nyw.domain.domain.router.PathConstants;
 import com.nyw.libproject.common.fragment.WanBasePresenterFragment;
 import com.nyw.wanandroid.R;
@@ -67,6 +69,12 @@ public class KnowledgeArtFragment extends WanBasePresenterFragment<KnowledgeArtP
         mAdapter=new KnowledgeArtAdapter();
         recycleView.setLayoutManager(new LinearLayoutManager(getContext()));
         recycleView.setAdapter(mAdapter);
+        mAdapter.setOnItemClickListener(new KnowledgeArtAdapter.OnItemClickListener() {
+            @Override
+            public void onClick(KnowledgeArtBean bean, int pos) {
+                Navigation.navigateToArtActivity(bean,pos);
+            }
+        });
     }
 
     @Override

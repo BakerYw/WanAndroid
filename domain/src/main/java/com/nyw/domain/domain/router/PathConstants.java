@@ -47,9 +47,9 @@ public class PathConstants {
     public static final String PATH_KNOWLEDGE = PATH_GROUP_KNOWLEDGE + "/home";
     public static final String PATH_KNOWLEDG_ART = PATH_GROUP_KNOWLEDGE + "/home/art";
     public static final String PATH_KNOWLEDG_NAV = PATH_GROUP_KNOWLEDGE + "/home/nav";
-    public static final String PATH_GOOD_DETAIL = PATH_GROUP_KNOWLEDGE + "/good/detail";
-    public static final String PATH_ORDER = PATH_GROUP_KNOWLEDGE + "/order";
-    public static final String PATH_ORDER_LIST = PATH_GROUP_KNOWLEDGE + "/order/list";
+    public static final String PATH_KNOWLEDG_DETAIL = PATH_GROUP_KNOWLEDGE + "/home/detail";
+    public static final String PATH_KNOWLEDGART_ACTIVITY = PATH_GROUP_KNOWLEDGE + "/main";
+
 
     //scheme wechat
     private static final String PATH_GROUP_WECHAT = "/wechat";
@@ -74,8 +74,7 @@ public class PathConstants {
     public static final String PATH_WITHDRAW = PATH_GROUP_WITHDRAW + "/main";
 
     //login interceptor
-    public static final String[] LOGIN_REQUIRED_PATH = {PATH_CIRCLE_PUBLISH, PATH_CIRCLE_CREATE,
-            PATH_ORDER, PATH_GOOD_DETAIL};
+    public static final String[] LOGIN_REQUIRED_PATH = {PATH_CIRCLE_PUBLISH, PATH_CIRCLE_CREATE};
 
     static {
         supportPath.add(PATH_LOGIN_INTRO);

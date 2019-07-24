@@ -3,7 +3,7 @@ package com.nyw.wanandroid.module.home.mvp;
 
 import com.nyw.domain.common.loadmore.PageLoadMoreResponse;
 import com.nyw.domain.domain.bean.request.home.SearchReq;
-import com.nyw.domain.domain.bean.response.home.ArticlesBean;
+import com.nyw.domain.domain.bean.response.home.ArticleBean;
 import com.nyw.wanandroid.module.home.data.repository.IhomeRepository;
 import com.nyw.wanandroid.module.home.data.repository.homeRepositoryImpl;
 
@@ -47,12 +47,12 @@ public class SearchResultPresenter extends SearchResultContract.Presenter{
     }
 
     @Override
-    protected ArticlesBean castDataToDest(ArticlesBean articlesBean) {
-        return articlesBean;
+    protected ArticleBean castDataToDest(ArticleBean articleBean) {
+        return articleBean;
     }
 
     @Override
-    protected Observable<List<ArticlesBean>> getRefreshLoadObservable(SearchReq body) {
+    protected Observable<List<ArticleBean>> getRefreshLoadObservable(SearchReq body) {
         return mRepository.SearchBean(body).map(PageLoadMoreResponse::getDatas);
     }
 
