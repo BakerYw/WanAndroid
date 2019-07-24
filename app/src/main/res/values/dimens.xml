@@ -9,4 +9,5 @@
     <dimen name="dp_30">30dp</dimen>
     <dimen name="dp_50">50dp</dimen>
     <dimen name="dp_68">68dp</dimen>
+    <dimen name="text_content">14sp</dimen>
 </resources>

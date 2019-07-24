@@ -4,6 +4,7 @@
     android:id="@+id/tv_name"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
+    android:layout_margin="5dp"
     android:background="@drawable/bg_press_color_bg_radius_max"
     android:paddingLeft="15dp"
     android:paddingTop="5dp"

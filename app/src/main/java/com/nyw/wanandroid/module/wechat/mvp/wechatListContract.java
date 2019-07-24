@@ -1,17 +1,9 @@
 package com.nyw.wanandroid.module.wechat.mvp;
 
-import com.bakerj.base.BasePresenter;
-import com.bakerj.base.BaseView;
 import com.bakerj.base.loadmore.mvp.LoadMoreContract;
-import com.nyw.domain.domain.bean.request.home.HomeReq;
 import com.nyw.domain.domain.bean.request.wechat.WechatReq;
 import com.nyw.domain.domain.bean.response.home.ArticlesBean;
-import com.nyw.domain.domain.bean.response.home.BannerBean;
-import com.nyw.domain.domain.bean.response.home.KnowledgeArtBean;
 import com.nyw.libproject.loadmore.mvp.PageLoadMorePresenter;
-import com.nyw.wanandroid.module.home.mvp.homeContract;
-
-import java.util.List;
 
 /**
  * @author nyw

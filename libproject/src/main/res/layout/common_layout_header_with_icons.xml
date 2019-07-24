@@ -27,14 +27,14 @@
         android:layout_height="@dimen/back_img_size"
         android:contentDescription="@string/back"
         android:padding="15dp"
-        android:src="@mipmap/back_white"
+        android:src="@drawable/ic_back"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/common_iv_iconR"
-        android:layout_width="48dp"
-        android:layout_height="@dimen/back_img_size"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:padding="15dp"
         android:visibility="gone"
         app:layout_constraintRight_toRightOf="parent"

@@ -12,14 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bakerj.base.widgets.refresh.CustomRefreshLayout;
-import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.nyw.domain.domain.bean.response.home.KnowledgeNavBean;
 import com.nyw.domain.domain.router.PathConstants;
 import com.nyw.libproject.common.fragment.WanBasePresenterFragment;
 import com.nyw.wanandroid.R;
-import com.nyw.wanandroid.module.knowledge.mvp.knowledgeNaviContract;
-import com.nyw.wanandroid.module.knowledge.mvp.knowledgeNaviPresenter;
+import com.nyw.wanandroid.module.knowledge.mvp.KnowledgeNaviContract;
+import com.nyw.wanandroid.module.knowledge.mvp.KnowledgeNaviPresenter;
 import com.nyw.wanandroid.module.knowledge.presentation.adapter.KnowledgeNavAdapter1;
 import com.nyw.wanandroid.module.knowledge.presentation.adapter.KnowledgeNavAdapter2;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
@@ -32,7 +31,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 @Route(path = PathConstants.PATH_KNOWLEDG_NAV)
-public class KnowledgeNavFragment extends WanBasePresenterFragment<knowledgeNaviPresenter> implements knowledgeNaviContract.View {
+public class KnowledgeNavFragment extends WanBasePresenterFragment<KnowledgeNaviPresenter> implements KnowledgeNaviContract.View {
     @BindView(R.id.refresh_layout)
     CustomRefreshLayout refreshLayout;
     @BindView(R.id.recycle_view)
@@ -52,7 +51,7 @@ public class KnowledgeNavFragment extends WanBasePresenterFragment<knowledgeNavi
         View view = inflater.inflate(R.layout.frag_knowledge_nav, container, false);
         unbinder = ButterKnife.bind(this, view);
         initView();
-        setPresenter(new knowledgeNaviPresenter(this));
+        setPresenter(new KnowledgeNaviPresenter(this));
         super.onCreateView(inflater, container, savedInstanceState);
         return view;
     }
@@ -103,23 +102,15 @@ public class KnowledgeNavFragment extends WanBasePresenterFragment<knowledgeNavi
                 LinearLayoutManager mLayoutManager =
                         (LinearLayoutManager) recycleView.getLayoutManager();
                 mLayoutManager.scrollToPositionWithOffset(pastVisiblesItems, 0);
-//                if (dy > 0) //向下滚动
-//                {
-//                    int visibleItemCount = mLevel1LayoutMgr2.getChildCount();	//得到显示屏幕内的list数量
-//                    int totalItemCount = mLevel1LayoutMgr2.getItemCount();	//得到list的总数量
-//                    int pastVisiblesItems = mLevel1LayoutMgr2.findFirstVisibleItemPosition();//得到显示屏内的第一个list的位置数position
-//                }
             }
 
         });
-
     }
 
     @Override
     protected void lazyLoadOnce() {
-        showLoading();
         super.lazyLoadOnce();
-        mPresenter.getNaviBean();
+        refreshLayout.autoRefresh();
     }
 
     @Override
@@ -130,7 +121,6 @@ public class KnowledgeNavFragment extends WanBasePresenterFragment<knowledgeNavi
 
     @Override
     public void NaviBeanGet(List<KnowledgeNavBean> data) {
-        dismissLoading();
         mAdapter1.setNewData(data);
         mAdapter1.notifyDataSetChanged();
         mAdapter2.setNewData(data);

@@ -1,15 +1,25 @@
 package com.nyw.wanandroid.module.web.presentation.activity;
 
 import android.os.Bundle;
-import android.view.View;
+import android.view.KeyEvent;
+import android.view.ViewGroup;
 import android.webkit.WebView;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+
+import androidx.annotation.Nullable;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.just.agentweb.AgentWeb;
+import com.just.agentweb.DefaultWebClient;
+import com.just.agentweb.WebChromeClient;
+import com.just.agentweb.WebViewClient;
 import com.nyw.domain.domain.router.PathConstants;
-import com.nyw.libproject.common.hybrid.sonic.WanBaseBrowserActivity;
+import com.nyw.libproject.common.activity.WanBaseTitleBackActivity;
 import com.nyw.wanandroid.R;
+import com.nyw.wanandroid.module.web.widget.WebPopup;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -17,17 +27,20 @@ import butterknife.OnClick;
 import icepick.State;
 
 @Route(path = PathConstants.PATH_WEB_COMMON)
-public class WebActivity extends WanBaseBrowserActivity {
-    @BindView(R.id.wv_common)
-    WebView wvCommon;
+public class WebActivity extends WanBaseTitleBackActivity {
     @State
     @Autowired
     String url;
-    @BindView(R.id.common_iv_iconL)
-    ImageView commonIvIconL;
+    @BindView(R.id.main_view)
+    LinearLayout mainViewGroup;
+    @BindView(R.id.more)
+    ImageView more;
+    private AgentWeb mAgentWeb;
+    private WebPopup webPopup;
 
     @Override
-    protected void setContentViewLayout() {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.web_activity);
         ButterKnife.bind(this);
         setDarkStatusBar();
@@ -36,22 +49,55 @@ public class WebActivity extends WanBaseBrowserActivity {
     }
 
     private void initView() {
-        commonIvIconL.setVisibility(View.VISIBLE);
-        commonIvIconL.setBackgroundResource(R.mipmap.ic_more);
+        webPopup = new WebPopup(getContext());
+        mAgentWeb = AgentWeb.with(this)
+                .setAgentWebParent(mainViewGroup, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
+                .useDefaultIndicator(getResources().getColor(com.nyw.libproject.R.color.accent), 1)
+                .setSecurityType(AgentWeb.SecurityType.STRICT_CHECK)
+                .setMainFrameErrorView(com.nyw.libproject.R.layout.layout_agent_web_error, com.nyw.libproject.R.id.iv_404)
+                .setOpenOtherPageWays(DefaultWebClient.OpenOtherPageWays.ASK)
+                // .interceptUnkownUrl()
+                .setWebChromeClient(new WebChromeClient() {
+                    @Override
+                    public void onReceivedTitle(WebView view, String title) {
+                        super.onReceivedTitle(view, title);
+                    }
+                })
+                .setWebViewClient(new WebViewClient())
+                .createAgentWeb()
+                .ready()
+                .go(url);
     }
 
     @Override
-    public String getUrl() {
-        return url;
+    protected void onPause() {
+        mAgentWeb.getWebLifeCycle().onPause();
+        super.onPause();
+
     }
 
     @Override
-    protected WebView getWebView() {
-        return wvCommon;
+    protected void onResume() {
+        mAgentWeb.getWebLifeCycle().onResume();
+        super.onResume();
     }
 
+    @Override
+    protected void onDestroy() {
+        mAgentWeb.getWebLifeCycle().onDestroy();
+        super.onDestroy();
+    }
 
-    @OnClick(R.id.common_iv_iconL)
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (mAgentWeb.handleKeyEvent(keyCode, event)) {
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    @OnClick(R.id.more)
     public void onViewClicked() {
+        webPopup.showPopupWindow(more);
     }
 }

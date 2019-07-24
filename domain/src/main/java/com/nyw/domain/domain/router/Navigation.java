@@ -38,6 +38,10 @@ public class Navigation {
             navigateToWeb(url, activityOptionsCompat);
         }
     }
+    public static void navigateToSearch() {ARouter.getInstance().build(PathConstants.PATH_SEARCH).navigation(); }
+
+    public static void navigateToSearchResult(String key) {ARouter.getInstance().build(PathConstants.PATH_SEARCH_RESULT).withString("key",key).navigation(); }
+
 
     public static void navigateToWeb(String url) {
         navigateToWeb(url, null);
@@ -202,9 +206,7 @@ public class Navigation {
                 .withString("status", status).navigation();
     }
 
-    public static void navigateToSearch() {
-        ARouter.getInstance().build(PathConstants.PATH_MALL_SEARCH).navigation();
-    }
+
 
     //me
     public static Fragment getMeFragment() {

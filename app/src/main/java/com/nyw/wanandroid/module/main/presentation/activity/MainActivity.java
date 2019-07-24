@@ -6,16 +6,12 @@ import android.os.Bundle;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.BarUtils;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
-import com.nyw.domain.common.util.cache.UserCacheUtil;
-import com.nyw.domain.domain.event.home.ToUserCenterEvent;
 import com.nyw.domain.domain.router.Navigation;
 import com.nyw.domain.domain.router.PathConstants;
 import com.nyw.libproject.common.activity.WanBaseActivity;
 import com.nyw.libproject.common.adapter.BasePagerAdapter;
 import com.nyw.libwidgets.scroll.TouchHandleViewPager;
 import com.nyw.wanandroid.R;
-
-import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -28,7 +24,6 @@ public class MainActivity extends WanBaseActivity {
     @BindView(R.id.home_vp)
     TouchHandleViewPager homeVp;
     private int preIndex = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +39,7 @@ public class MainActivity extends WanBaseActivity {
         homeVp.setOffscreenPageLimit(5);
         BasePagerAdapter adapter = new BasePagerAdapter(getSupportFragmentManager(),
                 Navigation.getCircleFragment(), Navigation.getKnowledgeFragment(),
-                Navigation.getWechatFragment(),Navigation.getProjectFragment(),Navigation.getMeFragment());
+                Navigation.getWechatFragment(), Navigation.getProjectFragment(), Navigation.getMeFragment());
         homeVp.setAdapter(adapter);
     }
 
@@ -89,10 +84,5 @@ public class MainActivity extends WanBaseActivity {
         BarUtils.setStatusBarLightMode(this, false);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);
-    }
 
 }

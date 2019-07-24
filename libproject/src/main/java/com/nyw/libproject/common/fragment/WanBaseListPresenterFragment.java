@@ -46,4 +46,5 @@ public abstract class WanBaseListPresenterFragment<Presenter extends LoadMorePre
     public Object customFunctionCall(Object obj) {
         return null;
     }
+
 }

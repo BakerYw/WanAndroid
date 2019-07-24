@@ -12,6 +12,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.nyw.domain.domain.bean.response.home.ArticlesBean;
 import com.nyw.domain.domain.bean.response.home.KnowledgeArtBean;
 import com.nyw.domain.domain.bean.response.home.KnowledgeNavBean;
+import com.nyw.domain.domain.router.Navigation;
 import com.nyw.libwidgets.floatlayout.FloatLayout;
 import com.nyw.wanandroid.R;
 
@@ -22,10 +23,7 @@ import java.util.Queue;
 public class KnowledgeNavAdapter2 extends BaseQuickAdapter<KnowledgeNavBean, BaseViewHolder>{
     private LayoutInflater mInflater = null;
     private Queue<TextView> mFlexItemTextViewCaches = new LinkedList<>();
-    private OnItemClickListener mOnItemClickListener = null;
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
-        mOnItemClickListener = onItemClickListener;
-    }
+
     public KnowledgeNavAdapter2() {
         super(R.layout.adapter_know_art);
     }
@@ -42,22 +40,11 @@ public class KnowledgeNavAdapter2 extends BaseQuickAdapter<KnowledgeNavBean, Bas
             child.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (mOnItemClickListener != null) {
-                        mOnItemClickListener.onClick(item, finalI);
-                    }
+                    Navigation.navigateToWeb(item.getArticles().get(finalI).getLink());
                 }
             });
             fl.addView(child);
         }
-
-        helper.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mOnItemClickListener != null) {
-                    mOnItemClickListener.onClick(item, 0);
-                }
-            }
-        });
     }
 
     @Override

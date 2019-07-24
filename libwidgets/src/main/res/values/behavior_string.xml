@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_view_behavior">com.nyw.libwidgets.lbehaviorlib.behavior.TitleBehavior</string>
+    <string name="fab_scale_behavior">com.nyw.libwidgets.lbehaviorlib.behavior.FabScaleBehavior</string>
+    <string name="fab_vertical_behavior">com.nyw.libwidgets.lbehaviorlib.behavior.FabVerticalBehavior</string>
+    <string name="bottom_view_behavior">com.nyw.libwidgets.lbehaviorlib.behavior.BottomBehavior</string>
+</resources>

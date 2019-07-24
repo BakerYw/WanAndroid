@@ -17,8 +17,8 @@ import com.nyw.domain.domain.bean.response.home.KnowledgeArtBean;
 import com.nyw.domain.domain.router.PathConstants;
 import com.nyw.libproject.common.fragment.WanBasePresenterFragment;
 import com.nyw.wanandroid.R;
-import com.nyw.wanandroid.module.knowledge.mvp.knowledgeArtContract;
-import com.nyw.wanandroid.module.knowledge.mvp.knowledgeArtPresenter;
+import com.nyw.wanandroid.module.knowledge.mvp.KnowledgeArtContract;
+import com.nyw.wanandroid.module.knowledge.mvp.KnowledgeArtPresenter;
 import com.nyw.wanandroid.module.knowledge.presentation.adapter.KnowledgeArtAdapter;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
@@ -31,7 +31,7 @@ import butterknife.Unbinder;
 
 
 @Route(path = PathConstants.PATH_KNOWLEDG_ART)
-public class KnowledgeArtFragment extends WanBasePresenterFragment<knowledgeArtPresenter> implements knowledgeArtContract.View {
+public class KnowledgeArtFragment extends WanBasePresenterFragment<KnowledgeArtPresenter> implements KnowledgeArtContract.View {
 
 
     @BindView(R.id.recycle_view)
@@ -48,7 +48,7 @@ public class KnowledgeArtFragment extends WanBasePresenterFragment<knowledgeArtP
         View view = inflater.inflate(R.layout.frag_knowledge_art, container, false);
         unbinder = ButterKnife.bind(this, view);
         initView();
-        setPresenter(new knowledgeArtPresenter(this));
+        setPresenter(new KnowledgeArtPresenter(this));
         super.onCreateView(inflater, container, savedInstanceState);
         return view;
     }
@@ -72,8 +72,7 @@ public class KnowledgeArtFragment extends WanBasePresenterFragment<knowledgeArtP
     @Override
     protected void lazyLoadOnce() {
         super.lazyLoadOnce();
-        showLoading();
-        mPresenter.getThreeBean();
+        refreshLayout.autoRefresh();
     }
     @Override
     public void onDestroyView() {
@@ -83,7 +82,6 @@ public class KnowledgeArtFragment extends WanBasePresenterFragment<knowledgeArtP
 
     @Override
     public void ThreeBeanGet(List<KnowledgeArtBean> data) {
-        dismissLoading();
         if (data!=null){
             mAdapter.addData(0, data);
             mAdapter.notifyDataSetChanged();

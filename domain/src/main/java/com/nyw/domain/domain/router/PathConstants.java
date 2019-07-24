@@ -29,6 +29,9 @@ public class PathConstants {
     //scheme home
     private static final String PATH_GROUP_HOME = "/home";
     public static final String PATH_HOME = PATH_GROUP_HOME + "/main";
+    public static final String PATH_SEARCH = PATH_GROUP_HOME + "/search";
+    public static final String PATH_SEARCH_RESULT = PATH_SEARCH + "/result";
+
 
     //scheme circle
     private static final String PATH_GROUP_CIRCLE = "/circle";
@@ -47,7 +50,6 @@ public class PathConstants {
     public static final String PATH_GOOD_DETAIL = PATH_GROUP_KNOWLEDGE + "/good/detail";
     public static final String PATH_ORDER = PATH_GROUP_KNOWLEDGE + "/order";
     public static final String PATH_ORDER_LIST = PATH_GROUP_KNOWLEDGE + "/order/list";
-    public static final String PATH_MALL_SEARCH = PATH_GROUP_KNOWLEDGE + "/search";
 
     //scheme wechat
     private static final String PATH_GROUP_WECHAT = "/wechat";

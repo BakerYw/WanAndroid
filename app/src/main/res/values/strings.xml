@@ -7,4 +7,7 @@
     <string name="project">项目</string>
     <string name="me">我的</string>
     <string name="cancel">取消</string>
+    <string name="hint_search">请输入关键词</string>
+    <string name="history_search">历史搜索</string>
+    <string name="hot_search">热门搜索</string>
 </resources>
