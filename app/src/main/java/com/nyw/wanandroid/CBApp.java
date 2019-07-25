@@ -8,6 +8,8 @@ import androidx.multidex.MultiDexApplication;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bakerj.rxretrohttp.RxRetroHttp;
 import com.blankj.utilcode.util.Utils;
+import com.nyw.domain.common.api.AddCookiesInterceptor;
+import com.nyw.domain.common.api.SaveCookiesInterceptor;
 import com.nyw.domain.common.api.WanApiResult;
 import com.nyw.domain.common.api.DownloadInterceptor;
 import com.nyw.domain.common.api.HeaderInterceptor;
@@ -18,6 +20,7 @@ import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
 
 public class CBApp extends MultiDexApplication {
+    private Context mContext;
     @Override
     public void onCreate() {
         super.onCreate();
@@ -37,7 +40,10 @@ public class CBApp extends MultiDexApplication {
                 .setBaseUrl(BuildConfig.API_SERVER_URL)
                 .setApiResultClass(WanApiResult.class)
                 .setTimeOut(BuildConfig.API_TIME_OUT)
-                .addInterceptor(new HeaderInterceptor())
+                //添加持久化Cookie
+                .addInterceptor(new AddCookiesInterceptor(getApplicationContext()))
+                .addInterceptor(new SaveCookiesInterceptor(getApplicationContext()))
+                //.addInterceptor(new HeaderInterceptor())
                 .setDefaultErrMsg("服务器开小差了")
                 .generateRetroClient();
         SmartRefreshLayout.setDefaultRefreshHeaderCreator((context, layout) -> {

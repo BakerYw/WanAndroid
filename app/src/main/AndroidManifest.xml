@@ -16,13 +16,14 @@
     <application
         android:name=".CBApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_launcher_round"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/net_security_config"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-        <activity android:name=".module.knowledge.presentation.activity.KnowledgeArtActivity"/>
+        <activity android:name=".module.me.presentation.activity.MyCollectActivity"></activity>
+        <activity android:name=".module.knowledge.presentation.activity.KnowledgeArtActivity" />
         <activity android:name=".module.home.presentation.activity.SearchActivity" />
 
         <uses-library
@@ -41,6 +42,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".module.main.presentation.activity.MainActivity" />
+        <activity android:name=".module.login.presentation.activity.LoginMainActivity" />
         <activity
             android:name=".module.web.presentation.activity.WebActivity"
             android:hardwareAccelerated="true" />

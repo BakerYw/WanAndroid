@@ -1,9 +1,15 @@
 package com.nyw.wanandroid.module.project.mvp;
 
 
+import com.bakerj.rxretrohttp.RxRetroHttp;
+import com.nyw.domain.common.api.WanApiResult;
 import com.nyw.domain.common.loadmore.PageLoadMoreResponse;
 import com.nyw.domain.domain.bean.request.project.ProjectReq;
 import com.nyw.domain.domain.bean.response.home.ArticleBean;
+import com.nyw.libproject.common.api.CBApiObserver;
+import com.nyw.wanandroid.module.home.data.repository.IhomeRepository;
+import com.nyw.wanandroid.module.home.data.repository.homeRepositoryImpl;
+import com.nyw.wanandroid.module.home.mvp.SearchResultContract;
 import com.nyw.wanandroid.module.project.data.repository.IprojectRepository;
 import com.nyw.wanandroid.module.project.data.repository.projectRepositoryImpl;
 
@@ -19,6 +25,8 @@ import io.reactivex.Observable;
  */
 public class projectListPresenter extends projectListContract.Presenter{
     private IprojectRepository mRepository = new projectRepositoryImpl();
+    private IhomeRepository Repository = new homeRepositoryImpl();
+
     private int cid;
 
 
@@ -56,4 +64,25 @@ public class projectListPresenter extends projectListContract.Presenter{
     }
 
 
+    @Override
+    public void Collect(int id) {
+        RxRetroHttp.composeRequest(Repository.Collect(id), mView)
+                .subscribe(new CBApiObserver<WanApiResult>() {
+                    @Override
+                    protected void success(WanApiResult data) {
+                        ((projectListContract.View) mView).CollectSuccess();
+                    }
+                });
+    }
+
+    @Override
+    public void UnCollect(int id) {
+        RxRetroHttp.composeRequest(Repository.Uncollect(id), mView)
+                .subscribe(new CBApiObserver<WanApiResult>() {
+                    @Override
+                    protected void success(WanApiResult data) {
+                        ((projectListContract.View) mView).UnCollectSuccess();
+                    }
+                });
+    }
 }

@@ -1,73 +1,89 @@
 package com.nyw.domain.common.util.cache;
 
-import android.text.TextUtils;
+import android.content.Context;
+import android.content.SharedPreferences;
 
 import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.StringUtils;
-import com.google.gson.Gson;
-import com.nyw.domain.domain.bean.response.user.UserInfo;
+import com.nyw.domain.common.Constants;
 import com.nyw.domain.domain.event.IInterceptEvent;
 import com.nyw.domain.domain.event.login.LogOutEvent;
-import com.nyw.domain.domain.event.login.LoginEvent;
 import com.nyw.domain.domain.router.Navigation;
 
 import org.greenrobot.eventbus.EventBus;
 
 /**
- * @author BakerJ
- * @date 2017/12/21
+ * @author nyw
+ * @date 2019/07/25
  */
-
 public class UserCacheUtil {
-    private static final String SPNAME_USER_INFO = "SPNAME_USER_INFO";
-    private static final String SPKEY_USER_INFO = "SPKEY_USER_INFO";
-    private static final String SPKEY_EVENT_SIGN_INFO = "SPKEY_EVENT_SIGN_INFO";
-    private static final String TOKEN = "TOKEN";
-
-    public static void saveUserInfo(UserInfo userInfo) {
-        SPUtils.getInstance(SPNAME_USER_INFO).put(SPKEY_USER_INFO, new Gson().toJson(userInfo));
+    /**
+     * 保存登录名和密码
+     *
+     * @param context Context
+     * @param name    用户名
+     * @param pwd     密码
+     */
+    public static void saveLoginInfo(Context context, String name, String pwd) {
+        SharedPreferences sp = context.getSharedPreferences(Constants.ISLOGIN, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("loginName", name).putString("loginPwd", pwd).apply();
     }
 
-    public static UserInfo getUserInfo() {
-        String userInfo = SPUtils.getInstance(SPNAME_USER_INFO).getString
-                (SPKEY_USER_INFO, "");
-        if (TextUtils.isEmpty(userInfo)) {
-            UserInfo userInfoBean = new UserInfo();
-            userInfoBean.setUuid("");
-            return userInfoBean;
-        }
-        return new Gson().fromJson(userInfo, UserInfo.class);
-    }
-
-//    public static void saveToken(Token token) {
-//        SPUtils.getInstance(SPNAME_USER_INFO).put(TOKEN, new Gson().toJson(token));
-//        EventBus.getDefault().post(new LoginEvent());
-//    }
-//
-//    public static String getToken() {
-//        String token = SPUtils.getInstance(SPNAME_USER_INFO).getString(TOKEN, "");
-//        if (!TextUtils.isEmpty(token)) {
-//            Token tokenObj = new Gson().fromJson(token, Token.class);
-//            token = tokenObj.getAccessToken();
-//        }
-//        return token;
-//    }
-
-//    public static boolean checkIsLoginWithJump(IInterceptEvent event) {
-//        boolean isLogin = checkIsLoginWithoutJump();
-//        if (!isLogin) {
-//            Navigation.navigateToLogin(event);
-//        }
-//        return isLogin;
-//    }
-
-//    public static boolean checkIsLoginWithoutJump() {
-//        return !StringUtils.isEmpty(getToken());
-//    }
-
-    public static void logOut(boolean isManual) {
-        SPUtils.getInstance(SPNAME_USER_INFO).clear(true);
-//        EventBus.getDefault().post(new UserInfoChangedEvent());
+    /**
+     * 清除登录信息
+     *
+     * @param context Context
+     */
+    public static void clearLoginInfo(Context context,boolean isManual) {
+        SharedPreferences sp = context.getSharedPreferences(Constants.ISLOGIN, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.clear().apply();
         EventBus.getDefault().post(new LogOutEvent(isManual));
     }
+
+    /**
+     * 获取保存的用户名
+     *
+     * @param context Context
+     * @return 用户名
+     */
+    public static String getLoginName(Context context) {
+        SharedPreferences sp = context.getSharedPreferences(Constants.ISLOGIN, Context.MODE_PRIVATE);
+        return sp.getString("loginName", "");
+    }
+
+    /**
+     * 获取保存的登录密码
+     *
+     * @param context Context
+     * @return 登录密码
+     */
+    public static String getLoginPwd(Context context) {
+        SharedPreferences sp = context.getSharedPreferences(Constants.ISLOGIN, Context.MODE_PRIVATE);
+        return sp.getString("loginPwd", "");
+    }
+
+
+    /**
+     * 获取本地保存的图片
+     * @return
+     */
+    public static String getUserImage() {
+        String userpic = SPUtils.getInstance().getString(Constants.USERPIC);
+        return userpic;
+    }
+
+    public static boolean checkIsLoginWithJump(IInterceptEvent event,Context context) {
+        boolean isLogin = checkIsLoginWithoutJump(context);
+        if (!isLogin) {
+            Navigation.navigateToLogin(event);
+        }
+        return isLogin;
+    }
+
+    public static boolean checkIsLoginWithoutJump(Context context) {
+        return !StringUtils.isEmpty(getLoginName(context));
+    }
+
 }

@@ -1,5 +1,6 @@
 package com.nyw.wanandroid.module.web.presentation.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.annotation.Nullable;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.blankj.utilcode.util.BarUtils;
 import com.just.agentweb.AgentWeb;
 import com.just.agentweb.DefaultWebClient;
 import com.just.agentweb.WebChromeClient;
@@ -43,7 +45,7 @@ public class WebActivity extends WanBaseTitleBackActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.web_activity);
         ButterKnife.bind(this);
-        setDarkStatusBar();
+        BarUtils.setStatusBarColor(this, Color.TRANSPARENT);
         inflateBaseView();
         initView();
     }
@@ -78,6 +80,7 @@ public class WebActivity extends WanBaseTitleBackActivity {
 
     @Override
     protected void onResume() {
+        BarUtils.setStatusBarLightMode(this, false);
         mAgentWeb.getWebLifeCycle().onResume();
         super.onResume();
     }

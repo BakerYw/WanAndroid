@@ -22,7 +22,7 @@ public class PathConstants {
     //scheme login
     private static final String PATH_GROUP_LOGIN = "/login";
     public static final String PATH_LOGIN_INTRO = PATH_GROUP_LOGIN + "/intro";
-    public static final String PATH_LOGIN_PHONE = PATH_GROUP_LOGIN + "/phone";
+    public static final String PATH_LOGIN_MAIN = PATH_GROUP_LOGIN + "/main";
     public static final String PATH_LOGIN_CODE = PATH_GROUP_LOGIN + "/code";
     public static final String PATH_LOGIN_BIND = PATH_GROUP_LOGIN + "/phone/bind";
 
@@ -64,6 +64,7 @@ public class PathConstants {
     //scheme me
     private static final String PATH_GROUP_ME = "/me";
     public static final String PATH_ME = PATH_GROUP_ME + "/mine";
+    public static final String PATH_COLLECT = PATH_GROUP_ME + "/collect";
 
     //scheme setting
     private static final String PATH_GROUP_SETTING = "/setting";

@@ -15,8 +15,10 @@ import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.nyw.domain.domain.bean.response.home.ArticleBean;
+import com.nyw.wanandroid.module.home.presentation.widget.CollectView;
 import com.nyw.libwidgets.utils.img.CustomRoundedCornersTransformation;
 import com.nyw.wanandroid.R;
+import com.nyw.wanandroid.module.me.presentation.adapter.CollectionAdapter;
 
 
 public class HomeAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder>{
@@ -24,7 +26,13 @@ public class HomeAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder>{
     public HomeAdapter() {
         super(R.layout.adapter_home);
     }
-
+    private OnCollectViewClickListener mOnCollectViewClickListener = null;
+    public interface OnCollectViewClickListener {
+        void onClick(BaseViewHolder helper, CollectView v, int position);
+    }
+     public void setOnCollectViewClickListener(OnCollectViewClickListener onCollectViewClickListener) {
+        mOnCollectViewClickListener = onCollectViewClickListener;
+    }
     @Override
     protected void convert(BaseViewHolder helper, ArticleBean item) {
         helper.setText(R.id.tv_title, Html.fromHtml(item.getTitle()))
@@ -49,12 +57,18 @@ public class HomeAdapter extends BaseQuickAdapter<ArticleBean, BaseViewHolder>{
         } else {
             iv_img.setVisibility(View.GONE);
         }
-//        CollectView cv_collect = helper.itemView.findViewById(R.id.cv_collect);
-//        if (item.isCollect()) {
-//            cv_collect.setChecked(true);
-//        } else {
-//            cv_collect.setChecked(false);
-//        }
+        CollectView cv_collect = helper.itemView.findViewById(R.id.cv_collect);
+        if (item.isCollect()) {
+            cv_collect.setChecked(true);
+        } else {
+            cv_collect.setChecked(false);
+        }
+        cv_collect.setOnClickListener(new CollectView.OnClickListener() {
+            @Override
+            public void onClick(CollectView v) {
+                mOnCollectViewClickListener.onClick(helper, v, helper.getAdapterPosition() - getHeaderLayoutCount());
+            }
+        });
         TextView tv_tag = helper.getView(R.id.tv_tag);
         if (item.getTags() != null && item.getTags().size() > 0) {
             tv_tag.setText(item.getTags().get(0).getName());

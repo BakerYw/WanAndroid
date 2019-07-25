@@ -1,9 +1,12 @@
 package com.nyw.wanandroid.module.home.mvp;
 
 
+import com.bakerj.rxretrohttp.RxRetroHttp;
+import com.nyw.domain.common.api.WanApiResult;
 import com.nyw.domain.common.loadmore.PageLoadMoreResponse;
 import com.nyw.domain.domain.bean.request.home.SearchReq;
 import com.nyw.domain.domain.bean.response.home.ArticleBean;
+import com.nyw.libproject.common.api.CBApiObserver;
 import com.nyw.wanandroid.module.home.data.repository.IhomeRepository;
 import com.nyw.wanandroid.module.home.data.repository.homeRepositoryImpl;
 
@@ -29,6 +32,28 @@ public class SearchResultPresenter extends SearchResultContract.Presenter{
     @Override
     public void setBody(String key) {
         this.mkey=key;
+    }
+
+    @Override
+    public void Collect(int id) {
+        RxRetroHttp.composeRequest(mRepository.Collect(id), mView)
+                .subscribe(new CBApiObserver<WanApiResult>() {
+                    @Override
+                    protected void success(WanApiResult data) {
+                        ((SearchResultContract.View) mView).CollectSuccess();
+                    }
+                });
+    }
+
+    @Override
+    public void UnCollect(int id) {
+        RxRetroHttp.composeRequest(mRepository.Uncollect(id), mView)
+                .subscribe(new CBApiObserver<WanApiResult>() {
+                    @Override
+                    protected void success(WanApiResult data) {
+                        ((SearchResultContract.View) mView).UnCollectSuccess();
+                    }
+                });
     }
 
     @Override

@@ -4,7 +4,9 @@ package com.nyw.wanandroid.module.home.presentation.fragment;
 import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.nyw.domain.domain.bean.response.home.ArticleBean;
 import com.nyw.domain.domain.router.Navigation;
 import com.nyw.domain.domain.router.PathConstants;
@@ -13,6 +15,7 @@ import com.nyw.wanandroid.R;
 import com.nyw.wanandroid.module.home.mvp.SearchResultContract;
 import com.nyw.wanandroid.module.home.mvp.SearchResultPresenter;
 import com.nyw.wanandroid.module.home.presentation.adapter.HomeAdapter;
+import com.nyw.wanandroid.module.home.presentation.widget.CollectView;
 
 import java.util.List;
 
@@ -28,6 +31,16 @@ public class SearchResultFragment extends WanBaseListPresenterFragment<SearchRes
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                 Navigation.navigateToWeb(mAdapter.getData().get(position).getLink());
+            }
+        });
+        mAdapter.setOnCollectViewClickListener(new HomeAdapter.OnCollectViewClickListener() {
+            @Override
+            public void onClick(BaseViewHolder helper, CollectView v, int position) {
+                if (!v.isChecked()) {
+                    mPresenter.Collect(mAdapter.getData().get(position).getId());
+                } else {
+                    mPresenter.UnCollect(mAdapter.getData().get(position).getId());
+                }
             }
         });
     }
@@ -54,5 +67,16 @@ public class SearchResultFragment extends WanBaseListPresenterFragment<SearchRes
         }
         mPresenter.setBody(key);
         refresh();
+    }
+
+    @Override
+    public void CollectSuccess() {
+        ToastUtils.showShort("收藏成功");
+    }
+
+    @Override
+    public void UnCollectSuccess() {
+        ToastUtils.showShort("取消收藏");
+
     }
 }

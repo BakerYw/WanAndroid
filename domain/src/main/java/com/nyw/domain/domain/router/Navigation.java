@@ -74,7 +74,7 @@ public class Navigation {
 
     //login
     public static void navigateToLogin(IInterceptEvent event) {
-        setEvent(ARouter.getInstance().build(PathConstants.PATH_LOGIN_PHONE), event).navigation();
+        setEvent(ARouter.getInstance().build(PathConstants.PATH_LOGIN_MAIN), event).navigation();
     }
 
     public static void navigateToLoginBind(IInterceptEvent event, ThirdPartyLoginInfo third,
@@ -86,13 +86,13 @@ public class Navigation {
     }
 
     public static void navigateToLoginPhone(IInterceptEvent event) {
-        setEvent(ARouter.getInstance().build(PathConstants.PATH_LOGIN_PHONE), event).navigation();
+        setEvent(ARouter.getInstance().build(PathConstants.PATH_LOGIN_MAIN), event).navigation();
     }
 
     public static void navigationToLoginPhoneWithThirdInfo(String thirdParty, String openId,
                                                            ThirdPartyLoginInfo thirdPartyLoginInfo,
                                                            IInterceptEvent event) {
-        setEvent(ARouter.getInstance().build(PathConstants.PATH_LOGIN_PHONE), event)
+        setEvent(ARouter.getInstance().build(PathConstants.PATH_LOGIN_MAIN), event)
                 .withString("openId", openId)
                 .withString("thirdParty", thirdParty)
                 .withParcelable("thirdPartyInfo", thirdPartyLoginInfo)
@@ -207,6 +207,11 @@ public class Navigation {
     //me
     public static Fragment getMeFragment() {
         return (Fragment) ARouter.getInstance().build(PathConstants.PATH_ME).navigation();
+    }
+
+    //setting
+    public static void navigateToCollection() {
+        ARouter.getInstance().build(PathConstants.PATH_COLLECT).navigation();
     }
 
     //setting

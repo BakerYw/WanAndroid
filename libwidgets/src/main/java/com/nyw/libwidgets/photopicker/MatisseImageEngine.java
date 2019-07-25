@@ -55,7 +55,6 @@ public class MatisseImageEngine implements ImageEngine {
                 .into(imageView);
     }
 
-    @Override
     public void loadGifImage(Context context, int resizeX, int resizeY, ImageView
             imageView, Uri uri) {
         RequestOptions options = new RequestOptions()

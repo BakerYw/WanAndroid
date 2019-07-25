@@ -9,12 +9,15 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.ConvertUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.nyw.domain.domain.bean.response.home.ArticleBean;
 import com.nyw.domain.domain.bean.response.home.BannerBean;
+import com.nyw.domain.domain.bean.response.home.CollectionBean;
 import com.nyw.domain.domain.router.Navigation;
 import com.nyw.domain.domain.router.PathConstants;
 import com.nyw.libproject.common.fragment.WanBaseListPresenterFragment;
@@ -24,6 +27,8 @@ import com.nyw.wanandroid.R;
 import com.nyw.wanandroid.module.home.mvp.HomeContract;
 import com.nyw.wanandroid.module.home.mvp.HomePresenter;
 import com.nyw.wanandroid.module.home.presentation.adapter.HomeAdapter;
+import com.nyw.wanandroid.module.home.presentation.widget.CollectView;
+import com.nyw.wanandroid.module.me.presentation.adapter.CollectionAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,6 +71,17 @@ public class HomeFragment extends WanBaseListPresenterFragment<HomePresenter, Ho
                 Navigation.navigateToWeb(mAdapter.getData().get(position).getLink());
             }
         });
+        mAdapter.setOnCollectViewClickListener(new HomeAdapter.OnCollectViewClickListener() {
+            @Override
+            public void onClick(BaseViewHolder helper, CollectView v, int position) {
+                if (!v.isChecked()) {
+                    mPresenter.Collect(mAdapter.getData().get(position).getId());
+                } else {
+                    mPresenter.UnCollect(mAdapter.getData().get(position).getId());
+                }
+            }
+        });
+
     }
 
     @Override
@@ -78,6 +94,16 @@ public class HomeFragment extends WanBaseListPresenterFragment<HomePresenter, Ho
     @Override
     public void TopArticleBeanGet(List<ArticleBean> data) {
         createHeaderTopItem(data);
+    }
+
+    @Override
+    public void CollectSuccess() {
+        ToastUtils.showShort("收藏成功");
+    }
+
+    @Override
+    public void UnCollectSuccess() {
+        ToastUtils.showShort("取消收藏");
     }
 
     private void createHeaderTopItem(List<ArticleBean> data) {
@@ -113,7 +139,7 @@ public class HomeFragment extends WanBaseListPresenterFragment<HomePresenter, Ho
         LinearLayout ll_new = view.findViewById(R.id.ll_new);
         TextView tv_new = view.findViewById(R.id.tv_new);
         ImageView iv_img = view.findViewById(R.id.iv_img);
-        //CollectView cv_collect = view.findViewById(R.id.cv_collect);
+        CollectView cv_collect = view.findViewById(R.id.cv_collect);
         TextView tv_tag = view.findViewById(R.id.tv_tag);
         tv_title.setText(item.getTitle());
         tv_author.setText(item.getAuthor());
@@ -133,27 +159,27 @@ public class HomeFragment extends WanBaseListPresenterFragment<HomePresenter, Ho
         } else {
             iv_img.setVisibility(View.GONE);
         }
-//        if (item.isCollect()) {
-//            cv_collect.setChecked(true);
-//        } else {
-//            cv_collect.setChecked(false);
-//        }
+        if (item.isCollect()) {
+            cv_collect.setChecked(true);
+        } else {
+            cv_collect.setChecked(false);
+        }
         if (item.getTags() != null && item.getTags().size() > 0) {
             tv_tag.setText(item.getTags().get(0).getName());
             tv_tag.setVisibility(View.VISIBLE);
         } else {
             tv_tag.setVisibility(View.GONE);
         }
-//        cv_collect.setOnClickListener(new CollectView.OnClickListener() {
-//            @Override
-//            public void onClick(CollectView v) {
-//                if (!v.isChecked()) {
-//                    presenter.collect(item, v);
-//                } else {
-//                    presenter.uncollect(item, v);
-//                }
-//            }
-//        });
+        cv_collect.setOnClickListener(new CollectView.OnClickListener() {
+            @Override
+            public void onClick(CollectView v) {
+                if (!v.isChecked()) {
+                    mPresenter.Collect(item.getId());
+                } else {
+                    mPresenter.UnCollect(item.getId());
+                }
+            }
+        });
         view.setOnClickListener(v -> { Navigation.navigateToWeb(item.getLink()); });
     }
 

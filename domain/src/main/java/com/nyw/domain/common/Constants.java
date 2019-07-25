@@ -6,6 +6,9 @@ package com.nyw.domain.common;
  */
 
 public class Constants {
+
+    public static final String ISLOGIN = "ISLOGIN";
+    public static final String USERPIC = "USERPIC";
     public static final String JUMP_BUNDLE = "JUMP_BUNDLE";
 
     public static final String NET_WORK_NOT_OPEN = "暂无网络连接";

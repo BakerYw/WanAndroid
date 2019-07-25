@@ -1,8 +1,14 @@
 package com.nyw.wanandroid.module.knowledge.mvp;
 
+import com.bakerj.rxretrohttp.RxRetroHttp;
+import com.nyw.domain.common.api.WanApiResult;
 import com.nyw.domain.common.loadmore.PageLoadMoreResponse;
 import com.nyw.domain.domain.bean.request.know.KnowReq;
 import com.nyw.domain.domain.bean.response.home.ArticleBean;
+import com.nyw.libproject.common.api.CBApiObserver;
+import com.nyw.wanandroid.module.home.data.repository.IhomeRepository;
+import com.nyw.wanandroid.module.home.data.repository.homeRepositoryImpl;
+import com.nyw.wanandroid.module.home.mvp.HomeContract;
 import com.nyw.wanandroid.module.knowledge.data.repository.IknowledgeRepository;
 import com.nyw.wanandroid.module.knowledge.data.repository.knowledgeRepositoryImpl;
 
@@ -18,6 +24,8 @@ import io.reactivex.Observable;
  */
 public class KnowDetailPresenter extends KnowDetailContract.Presenter{
     private IknowledgeRepository mRepository = new knowledgeRepositoryImpl();
+    private IhomeRepository Repository = new homeRepositoryImpl();
+
     private int cid;
     public KnowDetailPresenter(KnowDetailContract.View view,int cid) {
         super(view);
@@ -45,6 +53,28 @@ public class KnowDetailPresenter extends KnowDetailContract.Presenter{
     @Override
     protected Observable<List<ArticleBean>> getRefreshLoadObservable(KnowReq body) {
         return mRepository.getArticleBean(body).map(PageLoadMoreResponse::getDatas);
+    }
+
+    @Override
+    public void Collect(int id) {
+        RxRetroHttp.composeRequest(Repository.Collect(id), mView)
+                .subscribe(new CBApiObserver<WanApiResult>() {
+                    @Override
+                    protected void success(WanApiResult data) {
+                        ((KnowDetailContract.View) mView).CollectSuccess();
+                    }
+                });
+    }
+
+    @Override
+    public void UnCollect(int id) {
+        RxRetroHttp.composeRequest(Repository.Uncollect(id), mView)
+                .subscribe(new CBApiObserver<WanApiResult>() {
+                    @Override
+                    protected void success(WanApiResult data) {
+                        ((KnowDetailContract.View) mView).UnCollectSuccess();
+                    }
+                });
     }
 }
 

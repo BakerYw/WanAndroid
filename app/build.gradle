@@ -122,7 +122,8 @@ android {
     sourceSets {
         main {
             //jniLibs.srcDirs = ['libs']
-            res.srcDirs = ['src/main/res', 'src/main/res-home', 'src/main/res-know', 'src/main/res-mine', 'src/main/res-web']
+            res.srcDirs = ['src/main/res', 'src/main/res-home', 'src/main/res-know', 'src/main/res-mine',
+                           'src/main/res-web', 'src/main/res-login']
         }
     }
 }
@@ -136,7 +137,6 @@ dependencies {
     testImplementation 'junit:junit:4.13-beta-3'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
-
     implementation 'com.alibaba:arouter-api:1.4.1'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.blankj:utilcode:1.23.7'
@@ -147,8 +147,6 @@ dependencies {
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
     annotationProcessor 'frankiesardo:icepick-processor:3.2.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava:2.5.0'
-    implementation 'com.github.bumptech.glide:glide:4.9.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
     implementation 'com.github.ittianyu:BottomNavigationViewEx:2.0.4'
     implementation 'net.soulwolf.widget:ratiolayout:2.1.0'
     implementation 'com.github.razerdp:BasePopup:2.2.0'

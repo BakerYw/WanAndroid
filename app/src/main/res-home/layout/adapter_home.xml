@@ -181,7 +181,7 @@
 
     </LinearLayout>
 
-    <com.nyw.libwidgets.others.CollectView
+    <com.nyw.wanandroid.module.home.presentation.widget.CollectView
         android:id="@+id/cv_collect"
         android:layout_width="24dp"
         android:layout_height="24dp"

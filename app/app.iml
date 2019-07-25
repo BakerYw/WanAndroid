@@ -17,7 +17,7 @@
         <option name="ALLOW_USER_CONFIGURATION" value="false" />
         <option name="MANIFEST_FILE_RELATIVE_PATH" value="/src/main/AndroidManifest.xml" />
         <option name="RES_FOLDER_RELATIVE_PATH" value="/src/main/res" />
-        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/src/main/res;file://$MODULE_DIR$/src/main/res-home;file://$MODULE_DIR$/src/main/res-know;file://$MODULE_DIR$/src/main/res-mine;file://$MODULE_DIR$/src/main/res-web;file://$MODULE_DIR$/build/generated/res/resValues/Dev/debug" />
+        <option name="RES_FOLDERS_RELATIVE_PATH" value="file://$MODULE_DIR$/src/main/res;file://$MODULE_DIR$/src/main/res-home;file://$MODULE_DIR$/src/main/res-know;file://$MODULE_DIR$/src/main/res-mine;file://$MODULE_DIR$/src/main/res-web;file://$MODULE_DIR$/src/main/res-login;file://$MODULE_DIR$/build/generated/res/resValues/Dev/debug" />
         <option name="TEST_RES_FOLDERS_RELATIVE_PATH" value="" />
         <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/src/main/assets" />
       </configuration>
@@ -110,6 +110,7 @@
       <sourceFolder url="file://$MODULE_DIR$/src/main/res-know" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/res-mine" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/res-web" type="java-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/res-login" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/assets" type="java-resource" />
       <sourceFolder url="file://$MODULE_DIR$/src/main/aidl" isTestSource="false" />
@@ -273,6 +274,7 @@
     <orderEntry type="library" name="Gradle: com.trello.rxlifecycle3:rxlifecycle-android:3.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.lifecycle:lifecycle-livedata:2.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.trello.rxlifecycle3:rxlifecycle-components:3.0.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.github.goweii:RevealLayout:1.1.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.tencent.bugly:nativecrashreport:3.7.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.tencent.tinker:tinker-android-loader:1.9.9@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.tencent.tinker:tinker-ziputils:1.9.9@jar" level="project" />

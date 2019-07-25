@@ -14,7 +14,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.nyw.domain.domain.bean.response.home.ArticleBean;
-import com.nyw.libwidgets.others.CollectView;
+import com.nyw.wanandroid.module.home.presentation.widget.CollectView;
 import com.nyw.libwidgets.utils.img.CustomRoundedCornersTransformation;
 import com.nyw.wanandroid.R;
 
@@ -72,22 +72,22 @@ public class ProjectArticleAdapter extends BaseQuickAdapter<ArticleBean, BaseVie
         } else {
             iv_img.setVisibility(View.GONE);
         }
-//        CollectView cv_collect = helper.getView(R.id.cv_collect);
-//        if (item.isCollect()) {
-//            cv_collect.setChecked(true);
-//        } else {
-//            cv_collect.setChecked(false);
-//        }
+        CollectView cv_collect = helper.getView(R.id.cv_collect);
+        if (item.isCollect()) {
+            cv_collect.setChecked(true);
+        } else {
+            cv_collect.setChecked(false);
+        }
         TextView tv_tag = helper.getView(R.id.tv_tag);
         tv_tag.setVisibility(View.GONE);
-//        cv_collect.setOnClickListener(new CollectView.OnClickListener() {
-//            @Override
-//            public void onClick(CollectView v) {
-//                if (mOnCollectViewClickListener != null) {
-//                    mOnCollectViewClickListener.onClick(helper, v, helper.getAdapterPosition() - getHeaderLayoutCount());
-//                }
-//            }
-//        });
+        cv_collect.setOnClickListener(new CollectView.OnClickListener() {
+            @Override
+            public void onClick(CollectView v) {
+                if (mOnCollectViewClickListener != null) {
+                    mOnCollectViewClickListener.onClick(helper, v, helper.getAdapterPosition() - getHeaderLayoutCount());
+                }
+            }
+        });
     }
 
     public interface OnCollectViewClickListener {

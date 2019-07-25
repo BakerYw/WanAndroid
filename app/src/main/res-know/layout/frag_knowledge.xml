@@ -5,6 +5,10 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/status_bar_padding"
+        android:background="@color/colorAccent"/>s
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="40dp"
