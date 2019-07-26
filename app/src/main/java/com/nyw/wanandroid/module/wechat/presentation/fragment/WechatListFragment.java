@@ -7,15 +7,23 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.nyw.domain.common.util.cache.SettingCacheUtil;
 import com.nyw.domain.domain.bean.response.home.ArticleBean;
+import com.nyw.domain.domain.event.setting.SettingChangeEvent;
 import com.nyw.domain.domain.router.Navigation;
 import com.nyw.domain.domain.router.PathConstants;
 import com.nyw.libproject.common.fragment.WanBaseListPresenterFragment;
 import com.nyw.wanandroid.R;
 import com.nyw.wanandroid.module.home.presentation.adapter.HomeAdapter;
 import com.nyw.wanandroid.module.home.presentation.widget.CollectView;
+import com.nyw.wanandroid.module.knowledge.mvp.KnowDetailPresenter;
 import com.nyw.wanandroid.module.wechat.mvp.wechatListContract;
 import com.nyw.wanandroid.module.wechat.mvp.wechatListPresenter;
+import com.nyw.wanandroid.utils.RvAnimUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
@@ -38,6 +46,7 @@ public class WechatListFragment extends WanBaseListPresenterFragment<wechatListP
         super.beforeInitView();
         mRefreshLayout.setBackgroundColor(getResources().getColor(R.color.bg_gray));
         setPresenter(new wechatListPresenter(this, subcat));
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -60,6 +69,24 @@ public class WechatListFragment extends WanBaseListPresenterFragment<wechatListP
                 }
             }
         });
+        RvAnimUtils.setAnim(mAdapter, SettingCacheUtil.getInstance().getRvAnim());
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onSettingChangeEvent(SettingChangeEvent event) {
+        if (isDetached()) {
+            return;
+        }
+        if (event.isRvAnimChanged()) {
+            RvAnimUtils.setAnim(mAdapter, SettingCacheUtil.getInstance().getRvAnim());
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
     @Override
     public void CollectSuccess() {

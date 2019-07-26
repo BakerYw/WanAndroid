@@ -12,16 +12,24 @@ import com.blankj.utilcode.util.SPUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.nyw.domain.common.util.cache.SettingCacheUtil;
 import com.nyw.domain.common.util.cache.UserCacheUtil;
 import com.nyw.domain.domain.bean.response.home.CollectionBean;
+import com.nyw.domain.domain.event.setting.SettingChangeEvent;
 import com.nyw.domain.domain.router.Navigation;
 import com.nyw.domain.domain.router.PathConstants;
 import com.nyw.libproject.common.activity.WanBaseListActivity;
 import com.nyw.wanandroid.R;
 import com.nyw.wanandroid.module.home.presentation.widget.CollectView;
+import com.nyw.wanandroid.module.knowledge.mvp.KnowDetailPresenter;
 import com.nyw.wanandroid.module.me.mvp.MyCollectionContract;
 import com.nyw.wanandroid.module.me.mvp.MyCollectionPresenter;
 import com.nyw.wanandroid.module.me.presentation.adapter.CollectionAdapter;
+import com.nyw.wanandroid.utils.RvAnimUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
@@ -37,6 +45,7 @@ public class MyCollectActivity extends WanBaseListActivity<MyCollectionPresenter
         super.afterInitView();
         ButterKnife.bind(this);
         BarUtils.setStatusBarColor(this, Color.TRANSPARENT);
+        EventBus.getDefault().register(this);
         inflateBaseView();
         setTitleTxt("我的收藏");
         refresh();
@@ -56,6 +65,19 @@ public class MyCollectActivity extends WanBaseListActivity<MyCollectionPresenter
                 }
             }
         });
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onSettingChangeEvent(SettingChangeEvent event) {
+        if (event.isRvAnimChanged()) {
+            RvAnimUtils.setAnim(mAdapter, SettingCacheUtil.getInstance().getRvAnim());
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
     @Override
     protected void onResume() {

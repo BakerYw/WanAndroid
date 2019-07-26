@@ -170,10 +170,12 @@ public class MyFragment extends WanBasePresenterFragment {
                 Navigation.navigateToCollection();
                 break;
             case R.id.ll_open:
+                Navigation.navigateToOpen();
                 break;
             case R.id.ll_about_me:
                 break;
             case R.id.ll_setting:
+                Navigation.navigateToSetting();
                 break;
         }
     }

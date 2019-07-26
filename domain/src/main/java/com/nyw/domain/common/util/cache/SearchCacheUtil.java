@@ -1,49 +1,52 @@
 package com.nyw.domain.common.util.cache;
 
-import com.blankj.utilcode.util.SPUtils;
+import android.text.TextUtils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import com.blankj.utilcode.util.SPUtils;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import java.util.List;
 
-/**
- * @author BakerJ
- * @date 2018/4/3
- */
+
 public class SearchCacheUtil {
-    private static final String SPNAME_SEARCH = "SPNAME_SEARCH";
-    private static final String SPKEY_SEARCH_HISTORY = "SPKEY_SEARCH_HISTORY";
 
-    public static boolean addSearchHistory(String keyword) {
-        keyword = keyword.trim();
-        List<String> set = new ArrayList<>(getSearchHistory());
-        if (!set.contains(keyword)) {
-            set.add(0, keyword);
-            SPUtils.getInstance(SPNAME_SEARCH).put(SPKEY_SEARCH_HISTORY, getHistoryStrFromList
-                    (set));
-            return true;
+    private static final String SP_NAME = "search_history";
+    private static final String KEY_HISTORY = "KEY_HISTORY";
+
+    private final SPUtils mSPUtils = SPUtils.getInstance();
+    private final Gson mGson = new Gson();
+
+    public static SearchCacheUtil newInstance() {
+        return new SearchCacheUtil();
+    }
+
+    private SearchCacheUtil() {
+    }
+
+    public void save(List<String> historys) {
+        if (historys == null || historys.isEmpty()) {
+            mSPUtils.clear();
+            return;
         }
-        return false;
+        String json = mGson.toJson(historys);
+        mSPUtils.put(KEY_HISTORY, json);
     }
 
-    public static List<String> getSearchHistory() {
-        return Arrays.asList(SPUtils.getInstance(SPNAME_SEARCH).getString(SPKEY_SEARCH_HISTORY,
-                "").split(" , "));
-    }
-
-    private static String getHistoryStrFromList(List<String> str) {
-        StringBuilder stringBuilder = new StringBuilder("");
-        int size = str.size();
-        for (int i = 0; i < size; i++) {
-            if (i > 0) {
-                stringBuilder.append(" , ");
-            }
-            stringBuilder.append(str.get(i));
+    public List<String> get() {
+        String json = mSPUtils.getString(KEY_HISTORY, "");
+        if (TextUtils.isEmpty(json)) {
+            return null;
         }
-        return stringBuilder.toString();
+        try {
+            return mGson.fromJson(json, new TypeToken<List<String>>(){}.getType());
+        } catch (Exception e){
+            mSPUtils.clear();
+            return null;
+        }
     }
 
-    public static void clearHistorySearch() {
-        SPUtils.getInstance(SPNAME_SEARCH).put(SPKEY_SEARCH_HISTORY, "");
+    public void clearHistorySearch() {
+        mSPUtils.put(KEY_HISTORY, "");
     }
 }

@@ -208,10 +208,13 @@ public class Navigation {
     public static Fragment getMeFragment() {
         return (Fragment) ARouter.getInstance().build(PathConstants.PATH_ME).navigation();
     }
-
-    //setting
+    //collection
     public static void navigateToCollection() {
         ARouter.getInstance().build(PathConstants.PATH_COLLECT).navigation();
+    }
+    //open
+    public static void navigateToOpen() {
+        ARouter.getInstance().build(PathConstants.PATH_OPEN).navigation();
     }
 
     //setting

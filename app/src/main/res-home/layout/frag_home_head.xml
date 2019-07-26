@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.nyw.libwidgets.autoscrollviewpager.BGABanner
+            android:id="@+id/home_banner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/good_img_bg"
+            app:banner_indicatorGravity="bottom|center_horizontal"
+            app:banner_pageChangeDuration="3500"
+            app:banner_pointContainerBackground="@color/transparent"
+            app:banner_tipTextSize="12sp"
+            app:banner_isNumberIndicator="false"
+            app:banner_tipTextColor="@color/colorPrimaryDark"
+            app:banner_transitionEffect="rotate"
+            app:banner_viewAspectRatio="2" />
+    </FrameLayout>
+</LinearLayout>

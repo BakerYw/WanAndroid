@@ -22,7 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:replace="android:allowBackup">
-        <activity android:name=".module.me.presentation.activity.MyCollectActivity"></activity>
+        <activity android:name=".module.me.presentation.activity.MySettingActivity"></activity>
+        <activity android:name=".module.me.presentation.activity.MyOpenActivity" />
+        <activity android:name=".module.me.presentation.activity.MyCollectActivity" />
         <activity android:name=".module.knowledge.presentation.activity.KnowledgeArtActivity" />
         <activity android:name=".module.home.presentation.activity.SearchActivity" />
 

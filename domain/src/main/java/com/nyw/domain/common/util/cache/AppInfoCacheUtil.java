@@ -15,11 +15,11 @@ public class AppInfoCacheUtil {
 
     public static String getAppChannel() {
         return SPUtils.getInstance(SPNAME_APP_INFO).getString(SPKEY_APP_INFO_CHANNEL,
-                "mmyy");
+                "wanandroid");
     }
 
     public static void setAppChannel(String channel) {
-        channel = channel == null ? "mmyy" : channel;
+        channel = channel == null ? "wanandroid" : channel;
         SPUtils.getInstance(SPNAME_APP_INFO).put(SPKEY_APP_INFO_CHANNEL, channel);
     }
 

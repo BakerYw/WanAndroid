@@ -7,7 +7,9 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.nyw.domain.common.util.cache.SettingCacheUtil;
 import com.nyw.domain.domain.bean.response.home.ArticleBean;
+import com.nyw.domain.domain.event.setting.SettingChangeEvent;
 import com.nyw.domain.domain.router.Navigation;
 import com.nyw.domain.domain.router.PathConstants;
 import com.nyw.libproject.common.fragment.WanBaseListPresenterFragment;
@@ -16,15 +18,30 @@ import com.nyw.wanandroid.module.home.mvp.SearchResultContract;
 import com.nyw.wanandroid.module.home.mvp.SearchResultPresenter;
 import com.nyw.wanandroid.module.home.presentation.adapter.HomeAdapter;
 import com.nyw.wanandroid.module.home.presentation.widget.CollectView;
+import com.nyw.wanandroid.utils.RvAnimUtils;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
 @Route(path = PathConstants.PATH_SEARCH_RESULT)
 public class SearchResultFragment extends WanBaseListPresenterFragment<SearchResultPresenter, HomeAdapter,
         ArticleBean> implements SearchResultContract.View{
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onSettingChangeEvent(SettingChangeEvent event) {
+        if (isDetached()) {
+            return;
+        }
+        if (event.isRvAnimChanged()) {
+            RvAnimUtils.setAnim(mAdapter, SettingCacheUtil.getInstance().getRvAnim());
+        }
+    }
     @Override
     protected void afterInitView() {
         super.afterInitView();
+        RvAnimUtils.setAnim(mAdapter, SettingCacheUtil.getInstance().getRvAnim());
         mRefreshLayout.setBackgroundColor(getResources().getColor(R.color.bg_gray));
         mRefreshLayout.setEnableLoadMoreWhenContentNotFull(true);
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
@@ -48,6 +65,13 @@ public class SearchResultFragment extends WanBaseListPresenterFragment<SearchRes
     protected void beforeInitView() {
         super.beforeInitView();
         setPresenter(new SearchResultPresenter(this));
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
     @Override

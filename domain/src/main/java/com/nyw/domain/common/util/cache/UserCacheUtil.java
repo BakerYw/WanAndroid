@@ -12,6 +12,8 @@ import com.nyw.domain.domain.router.Navigation;
 
 import org.greenrobot.eventbus.EventBus;
 
+import static com.nyw.domain.common.Constants.ISLOGIN;
+
 /**
  * @author nyw
  * @date 2019/07/25
@@ -25,7 +27,7 @@ public class UserCacheUtil {
      * @param pwd     密码
      */
     public static void saveLoginInfo(Context context, String name, String pwd) {
-        SharedPreferences sp = context.getSharedPreferences(Constants.ISLOGIN, Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences(ISLOGIN, Context.MODE_MULTI_PROCESS);
         SharedPreferences.Editor editor = sp.edit();
         editor.putString("loginName", name).putString("loginPwd", pwd).apply();
     }
@@ -36,7 +38,7 @@ public class UserCacheUtil {
      * @param context Context
      */
     public static void clearLoginInfo(Context context,boolean isManual) {
-        SharedPreferences sp = context.getSharedPreferences(Constants.ISLOGIN, Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences(ISLOGIN, Context.MODE_MULTI_PROCESS);
         SharedPreferences.Editor editor = sp.edit();
         editor.clear().apply();
         EventBus.getDefault().post(new LogOutEvent(isManual));
@@ -49,7 +51,7 @@ public class UserCacheUtil {
      * @return 用户名
      */
     public static String getLoginName(Context context) {
-        SharedPreferences sp = context.getSharedPreferences(Constants.ISLOGIN, Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences(ISLOGIN, Context.MODE_MULTI_PROCESS);
         return sp.getString("loginName", "");
     }
 
@@ -60,7 +62,7 @@ public class UserCacheUtil {
      * @return 登录密码
      */
     public static String getLoginPwd(Context context) {
-        SharedPreferences sp = context.getSharedPreferences(Constants.ISLOGIN, Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences(ISLOGIN, Context.MODE_MULTI_PROCESS);
         return sp.getString("loginPwd", "");
     }
 
@@ -84,6 +86,11 @@ public class UserCacheUtil {
 
     public static boolean checkIsLoginWithoutJump(Context context) {
         return !StringUtils.isEmpty(getLoginName(context));
+    }
+
+    public static void logOut(boolean isManual) {
+        SPUtils.getInstance(ISLOGIN).clear(true);
+        EventBus.getDefault().post(new LogOutEvent(isManual));
     }
 
 }

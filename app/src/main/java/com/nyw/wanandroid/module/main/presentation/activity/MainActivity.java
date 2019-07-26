@@ -7,16 +7,20 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.BarUtils;
+import com.blankj.utilcode.util.FragmentUtils;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.nyw.domain.common.util.cache.UserCacheUtil;
 import com.nyw.domain.domain.event.home.ToUserCenterEvent;
+import com.nyw.domain.domain.event.login.LogOutEvent;
 import com.nyw.domain.domain.router.Navigation;
 import com.nyw.domain.domain.router.PathConstants;
 import com.nyw.libproject.common.activity.WanBaseActivity;
 import com.nyw.libproject.common.adapter.BasePagerAdapter;
 import com.nyw.libwidgets.scroll.TouchHandleViewPager;
 import com.nyw.wanandroid.R;
+import com.nyw.wanandroid.module.me.presentation.fragment.MyFragment;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -44,6 +48,7 @@ public class MainActivity extends WanBaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        EventBus.getDefault().register(this);
         BarUtils.setStatusBarColor(this, Color.TRANSPARENT);
         initVP();
         initNav();
@@ -99,6 +104,11 @@ public class MainActivity extends WanBaseActivity {
         homeNav.setCurrentItem(INDEX_ME);
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void logout(LogOutEvent event) {
+        ActivityUtils.finishOtherActivities(MainActivity.class);
+        homeNav.setCurrentItem(INDEX_HOME);
+    }
     @Override
     protected void onResume() {
         super.onResume();

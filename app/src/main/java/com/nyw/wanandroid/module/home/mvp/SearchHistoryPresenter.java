@@ -1,10 +1,10 @@
 package com.nyw.wanandroid.module.home.mvp;
 
 import com.bakerj.rxretrohttp.RxRetroHttp;
+import com.nyw.domain.common.util.cache.SearchCacheUtil;
 import com.nyw.domain.domain.bean.response.home.HotkeyBean;
 import com.nyw.libproject.common.api.CBApiObserver;
 import com.nyw.wanandroid.module.home.data.repository.homeRepositoryImpl;
-import com.nyw.wanandroid.utils.SearchHistoryUtils;
 
 import java.util.List;
 
@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class SearchHistoryPresenter extends SearchHistoryContract.Presenter{
     private homeRepositoryImpl mRepository = new homeRepositoryImpl();
-    private final SearchHistoryUtils mSearchHistoryUtils = SearchHistoryUtils.newInstance();
+    private final SearchCacheUtil mSearchHistoryUtils = SearchCacheUtil.newInstance();
 
 
     public SearchHistoryPresenter(SearchHistoryContract.View view) {

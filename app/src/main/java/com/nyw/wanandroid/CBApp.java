@@ -40,10 +40,10 @@ public class CBApp extends MultiDexApplication {
                 .setBaseUrl(BuildConfig.API_SERVER_URL)
                 .setApiResultClass(WanApiResult.class)
                 .setTimeOut(BuildConfig.API_TIME_OUT)
-                //添加持久化Cookie
-                .addInterceptor(new AddCookiesInterceptor(getApplicationContext()))
-                .addInterceptor(new SaveCookiesInterceptor(getApplicationContext()))
                 //.addInterceptor(new HeaderInterceptor())
+                //添加持久化Cookie
+                .addInterceptor(new SaveCookiesInterceptor(getApplicationContext()))
+                .addInterceptor(new AddCookiesInterceptor(getApplicationContext()))
                 .setDefaultErrMsg("服务器开小差了")
                 .generateRetroClient();
         SmartRefreshLayout.setDefaultRefreshHeaderCreator((context, layout) -> {

@@ -138,23 +138,15 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     implementation 'com.alibaba:arouter-api:1.4.1'
-    implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'com.blankj:utilcode:1.23.7'
-    implementation 'com.trello.rxlifecycle3:rxlifecycle:3.0.0'
-    implementation 'com.trello.rxlifecycle3:rxlifecycle-components:3.0.0'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
     implementation 'com.jakewharton:butterknife:10.1.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
-    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
-    annotationProcessor 'frankiesardo:icepick-processor:3.2.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava:2.5.0'
-    implementation 'com.github.ittianyu:BottomNavigationViewEx:2.0.4'
-    implementation 'net.soulwolf.widget:ratiolayout:2.1.0'
-    implementation 'com.github.razerdp:BasePopup:2.2.0'
-
+    implementation 'com.trello.rxlifecycle3:rxlifecycle:3.0.0'
+    implementation 'com.trello.rxlifecycle3:rxlifecycle-components:3.0.0'
     //注释掉原有bugly的仓库
     //compile 'com.tencent.bugly:crashreport:latest.release'//其中latest.release指代最新版本号，也可以指定明确的版本号，例如2.3.2
     implementation 'com.tencent.bugly:crashreport_upgrade:latest.release'
-//其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.2.0
+    //其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.2.0
     implementation 'com.tencent.bugly:nativecrashreport:latest.release'
     //其中latest.release指代最新版本号，也可以指定明确的版本号，例如2.2.0
     // 指定tinker依赖版本（注：应用升级1.3.5版本起，不再内置tinker）

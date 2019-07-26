@@ -65,6 +65,7 @@ public class PathConstants {
     private static final String PATH_GROUP_ME = "/me";
     public static final String PATH_ME = PATH_GROUP_ME + "/mine";
     public static final String PATH_COLLECT = PATH_GROUP_ME + "/collect";
+    public static final String PATH_OPEN = PATH_GROUP_ME + "/open";
 
     //scheme setting
     private static final String PATH_GROUP_SETTING = "/setting";
