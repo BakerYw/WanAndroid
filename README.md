@@ -1,8 +1,14 @@
 # WanAndroid
 ✨🌟（mvp+rxjava+retrfit）自用框架练习项目 🌟✨
+
+
 根据鸿洋大神的WanAndroid网站提供的开放API制作：[玩Android开放API](https://www.wanandroid.com/blog/show/2)
+
+
 首先非常感谢goweii的ui部分设计，下面是大神的github链接！
 [GitHub主页](https://github.com/goweii/WanAndroid)
+
+
 其次就是我师傅的框架结构了，采用 mvparm 的设计
 下面是我师傅的github链接
 [GitHub主页](https://github.com/BakerJQ)
