@@ -41,7 +41,7 @@ QQ:992116519
 <div >
     <img src="https://github.com/nieyuwen/WanAndroid/blob/master/images/QQ20190808-0.jpg" width="150" height="250"  alt=""/>
     <img src="https://github.com/nieyuwen/WanAndroid/blob/master/images/QQ20190808-1.jpg" width="150" height="250"  alt=""/>
-    <img src="https://github.com/nieyuwen/WanAndroid/blob/master/images/QQ20190808-2.jpg" height="250"  alt=""/>
+    <img src="https://github.com/nieyuwen/WanAndroid/blob/master/images/QQ20190808-2.jpg" width="150" height="250"  alt=""/>
     <img src="https://github.com/nieyuwen/WanAndroid/blob/master/images/QQ20190808-3.jpg" width="150" height="250" alt=""/>
 </div>
 <div >
