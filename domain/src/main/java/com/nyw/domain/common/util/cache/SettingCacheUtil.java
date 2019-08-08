@@ -7,10 +7,9 @@ import com.blankj.utilcode.util.SPUtils;
 public class SettingCacheUtil {
 
     private static final String SP_NAME = "setting";
-    private static final String KEY_SHOW_READ_LATER = "KEY_SHOW_READ_LATER";
+    private static final String KEY_SHOW_IMAGE = "KEY_SHOW_IMAGE";
     private static final String KEY_SHOW_TOP = "KEY_SHOW_TOP";
-    private static final String KEY_HIDE_ABOUT_ME = "KEY_HIDE_ABOUT_ME";
-    private static final String KEY_HIDE_OPEN = "KEY_HIDE_OPEN";
+
     private static final String KEY_WEB_SWIPE_BACK_EDGE = "KEY_WEB_SWIPE_BACK_EDGE";
     private static final String KEY_RV_ANIM = "KEY_RV_ANIM";
     private static final String KEY_SEARCH_HISTORY_MAX_COUNT = "KEY_SEARCH_HISTORY_MAX_COUNT";
@@ -29,12 +28,12 @@ public class SettingCacheUtil {
     private SettingCacheUtil() {
     }
 
-    public void setShowReadLater(boolean showReadLater) {
-        mSPUtils.put(KEY_SHOW_READ_LATER, showReadLater);
+    public void setShowImage(boolean show) {
+        mSPUtils.put(KEY_SHOW_IMAGE, show);
     }
 
-    public boolean isShowReadLater() {
-        return mSPUtils.getBoolean(KEY_SHOW_READ_LATER, true);
+    public boolean isShowImage() {
+        return mSPUtils.getBoolean(KEY_SHOW_IMAGE, true);
     }
 
     public void setShowTop(boolean showTop) {
@@ -45,21 +44,7 @@ public class SettingCacheUtil {
         return mSPUtils.getBoolean(KEY_SHOW_TOP, true);
     }
 
-    public void setHideAboutMe(boolean hideAboutMe) {
-        mSPUtils.put(KEY_HIDE_ABOUT_ME, hideAboutMe);
-    }
 
-    public boolean isHideAboutMe() {
-        return mSPUtils.getBoolean(KEY_HIDE_ABOUT_ME, false);
-    }
-
-    public void setHideOpen(boolean hideOpen) {
-        mSPUtils.put(KEY_HIDE_OPEN, hideOpen);
-    }
-
-    public boolean isHideOpen() {
-        return mSPUtils.getBoolean(KEY_HIDE_OPEN, false);
-    }
 
     public void setWebSwipeBackEdge(boolean webSwipeBackEdge) {
         mSPUtils.put(KEY_WEB_SWIPE_BACK_EDGE, webSwipeBackEdge);

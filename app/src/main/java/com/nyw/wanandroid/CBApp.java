@@ -7,27 +7,36 @@ import androidx.multidex.MultiDexApplication;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bakerj.rxretrohttp.RxRetroHttp;
+import com.bakerj.rxretrohttp.client.BaseRetroClient;
+import com.bakerj.rxretrohttp.client.SimpleRetroClient;
 import com.blankj.utilcode.util.Utils;
-import com.nyw.domain.common.api.AddCookiesInterceptor;
-import com.nyw.domain.common.api.SaveCookiesInterceptor;
 import com.nyw.domain.common.api.WanApiResult;
 import com.nyw.domain.common.api.DownloadInterceptor;
-import com.nyw.domain.common.api.HeaderInterceptor;
+import com.nyw.wanandroid.utils.cookie.CookieManager;
 import com.scwang.smartrefresh.header.MaterialHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
 
+import java.util.concurrent.TimeUnit;
+
+import okhttp3.OkHttpClient;
+
+import static com.bakerj.rxretrohttp.RxRetroHttp.getOkHttpClientBuilder;
+
 public class CBApp extends MultiDexApplication {
-    private Context mContext;
+    private static Context mContext;
     @Override
     public void onCreate() {
         super.onCreate();
+        mContext = getApplicationContext();
         libInit();
         thirdInit();
     }
-
+    public static Context getmContext() {
+        return mContext;
+    }
     private void libInit(){
         ARouter.init(this);
         Utils.init(this);
@@ -36,16 +45,15 @@ public class CBApp extends MultiDexApplication {
                 .setApiResultClass(WanApiResult.class)
                 .addInterceptor(new DownloadInterceptor())
                 .generateRetroClient(BuildConstants.RETRO_CLIENT_TAG_FILE);
+        RxRetroHttp.getOkHttpClientBuilder().cookieJar(new CookieManager(mContext));
         RxRetroHttp.getInstance().resetInterceptor()
                 .setBaseUrl(BuildConfig.API_SERVER_URL)
                 .setApiResultClass(WanApiResult.class)
                 .setTimeOut(BuildConfig.API_TIME_OUT)
                 //.addInterceptor(new HeaderInterceptor())
-                //添加持久化Cookie
-                .addInterceptor(new SaveCookiesInterceptor(getApplicationContext()))
-                .addInterceptor(new AddCookiesInterceptor(getApplicationContext()))
                 .setDefaultErrMsg("服务器开小差了")
                 .generateRetroClient();
+
         SmartRefreshLayout.setDefaultRefreshHeaderCreator((context, layout) -> {
             MaterialHeader materialHeader = new MaterialHeader(context);
             materialHeader.setColorSchemeColors(context.getResources().getColor(R.color

@@ -87,7 +87,7 @@ public class MainActivity extends WanBaseActivity {
                     homeVp.setCurrentItem(INDEX_PROJECT, false);
                     break;
                 default:
-                    if (UserCacheUtil.checkIsLoginWithJump(new ToUserCenterEvent(),this)) {
+                    if (UserCacheUtil.checkIsLoginWithJump(new ToUserCenterEvent())) {
                         preIndex = INDEX_ME;
                         homeVp.setCurrentItem(INDEX_ME, false);
                     } else {

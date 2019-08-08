@@ -16,6 +16,7 @@ import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.nyw.domain.common.util.cache.UserCacheUtil;
 import com.nyw.domain.domain.bean.response.login.LoginBean;
+import com.nyw.domain.domain.bean.response.login.LoginInfo;
 import com.nyw.domain.domain.event.IInterceptEvent;
 import com.nyw.domain.domain.router.PathConstants;
 import com.nyw.domain.domain.router.RouterInterceptorConstants;
@@ -108,15 +109,20 @@ public class LoginMainActivity extends WanBaseTitleBackActivity implements login
 
     @Override
     public void Login(LoginBean data) {
-        UserCacheUtil.saveLoginInfo(this,data.getUsername(),data.getPassword());
+        LoginInfo loginInfo=new LoginInfo();
+        loginInfo.setLoginName(data.getUsername());
+        loginInfo.setLoginPwd(data.getPassword());
+        UserCacheUtil.saveLoginInfo(loginInfo);
         finish();
         overridePendingTransition(R.anim.activity_fade_in, R.anim.activity_fade_out);
     }
 
     @Override
     public void Register(LoginBean data) {
-        UserCacheUtil.saveLoginInfo(this,data.getUsername(),data.getPassword());
-        finish();
+        LoginInfo loginInfo=new LoginInfo();
+        loginInfo.setLoginName(data.getUsername());
+        loginInfo.setLoginPwd(data.getPassword());
+        UserCacheUtil.saveLoginInfo(loginInfo);        finish();
         overridePendingTransition(R.anim.activity_fade_in, R.anim.activity_fade_out);
     }
 

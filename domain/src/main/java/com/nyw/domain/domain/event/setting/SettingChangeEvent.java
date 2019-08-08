@@ -7,6 +7,7 @@ public class SettingChangeEvent extends BaseEvent {
 
     private boolean showTopChanged;
     private boolean rvAnimChanged;
+    private boolean showImage;
 
     public SettingChangeEvent() {
     }
@@ -14,10 +15,19 @@ public class SettingChangeEvent extends BaseEvent {
 
     @Override
     public void post() {
-        if (showTopChanged || rvAnimChanged) {
+        if (showTopChanged || rvAnimChanged||showImage) {
             super.post();
         }
     }
+
+    public boolean isShowImage() {
+        return showImage;
+    }
+
+    public void setShowImage(boolean showImage) {
+        this.showImage = showImage;
+    }
+
     public boolean isShowTopChanged() {
         return showTopChanged;
     }

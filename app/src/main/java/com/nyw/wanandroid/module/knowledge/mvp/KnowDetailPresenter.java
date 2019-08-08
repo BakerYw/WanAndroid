@@ -5,6 +5,7 @@ import com.nyw.domain.common.api.WanApiResult;
 import com.nyw.domain.common.loadmore.PageLoadMoreResponse;
 import com.nyw.domain.domain.bean.request.know.KnowReq;
 import com.nyw.domain.domain.bean.response.home.ArticleBean;
+import com.nyw.domain.domain.event.home.CollectionEvent;
 import com.nyw.libproject.common.api.CBApiObserver;
 import com.nyw.wanandroid.module.home.data.repository.IhomeRepository;
 import com.nyw.wanandroid.module.home.data.repository.homeRepositoryImpl;
@@ -62,6 +63,7 @@ public class KnowDetailPresenter extends KnowDetailContract.Presenter{
                     @Override
                     protected void success(WanApiResult data) {
                         ((KnowDetailContract.View) mView).CollectSuccess();
+                        CollectionEvent.postCollectWithArticleId(id);
                     }
                 });
     }
@@ -73,6 +75,7 @@ public class KnowDetailPresenter extends KnowDetailContract.Presenter{
                     @Override
                     protected void success(WanApiResult data) {
                         ((KnowDetailContract.View) mView).UnCollectSuccess();
+                        CollectionEvent.postUnCollectWithArticleId(id);
                     }
                 });
     }

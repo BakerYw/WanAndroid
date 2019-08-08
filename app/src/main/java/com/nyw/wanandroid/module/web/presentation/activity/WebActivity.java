@@ -14,14 +14,20 @@ import androidx.annotation.Nullable;
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.BarUtils;
+import com.blankj.utilcode.util.ToastUtils;
 import com.just.agentweb.AgentWeb;
 import com.just.agentweb.DefaultWebClient;
 import com.just.agentweb.WebChromeClient;
 import com.just.agentweb.WebViewClient;
+import com.nyw.domain.common.util.cache.UserCacheUtil;
+import com.nyw.domain.domain.event.home.ToUserCenterEvent;
 import com.nyw.domain.domain.router.PathConstants;
-import com.nyw.libproject.common.activity.WanBaseTitleBackActivity;
+import com.nyw.libproject.common.activity.WanBaseActivity;
+import com.nyw.libwidgets.dialog.WebMenuDialog;
 import com.nyw.wanandroid.R;
-import com.nyw.wanandroid.module.web.widget.WebPopup;
+import com.nyw.wanandroid.module.web.mvp.webContract;
+import com.nyw.wanandroid.module.web.mvp.webPresenter;
+import com.nyw.wanandroid.utils.IntentUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -29,16 +35,21 @@ import butterknife.OnClick;
 import icepick.State;
 
 @Route(path = PathConstants.PATH_WEB_COMMON)
-public class WebActivity extends WanBaseTitleBackActivity {
+public class WebActivity extends WanBaseActivity implements webContract.View {
     @State
     @Autowired
     String url;
+    @State
+    @Autowired
+    int id;
     @BindView(R.id.main_view)
     LinearLayout mainViewGroup;
     @BindView(R.id.more)
     ImageView more;
+    @BindView(R.id.common_iv_back)
+    ImageView commonIvBack;
     private AgentWeb mAgentWeb;
-    private WebPopup webPopup;
+    private webPresenter mPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,12 +57,12 @@ public class WebActivity extends WanBaseTitleBackActivity {
         setContentView(R.layout.web_activity);
         ButterKnife.bind(this);
         BarUtils.setStatusBarColor(this, Color.TRANSPARENT);
-        inflateBaseView();
+        mPresenter = new webPresenter(this);
         initView();
     }
 
     private void initView() {
-        webPopup = new WebPopup(getContext());
+        commonIvBack.setOnClickListener(v -> finish());
         mAgentWeb = AgentWeb.with(this)
                 .setAgentWebParent(mainViewGroup, new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
                 .useDefaultIndicator(getResources().getColor(com.nyw.libproject.R.color.accent), 1)
@@ -99,8 +110,31 @@ public class WebActivity extends WanBaseTitleBackActivity {
         return super.onKeyDown(keyCode, event);
     }
 
-    @OnClick(R.id.more)
+    @OnClick({R.id.more})
     public void onViewClicked() {
-        webPopup.showPopupWindow(more);
+        WebMenuDialog.show(more, new WebMenuDialog.OnMenuClickListener() {
+            @Override
+            public void onCollect() {
+                if (UserCacheUtil.checkIsLoginWithJump(new ToUserCenterEvent())) {
+                    mPresenter.Collect(id);
+                }
+            }
+
+            @Override
+            public void onShare() {
+                IntentUtil.openShare(getContext(), url);
+            }
+
+            @Override
+            public void onBrowser() {
+                IntentUtil.openBrowser(getContext(), url);
+            }
+        });
     }
+
+    @Override
+    public void CollectSuccess() {
+        ToastUtils.showShort("收藏成功");
+    }
+
 }

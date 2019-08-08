@@ -43,18 +43,31 @@ public class Navigation {
 
     public static void navigateToSearchResult(String key) {ARouter.getInstance().build(PathConstants.PATH_SEARCH_RESULT).withString("key",key).navigation(); }
 
-
     public static void navigateToWeb(String url) {
-        navigateToWeb(url, null);
-    }
+        navigateToWeb(url, null);}
 
     public static void navigateToWeb(String url, ActivityOptionsCompat activityOptionsCompat) {
+            if (TextUtils.isEmpty(url)) {
+                return;
+            }
+            ARouter.getInstance().build(PathConstants.PATH_WEB_COMMON)
+                    .withOptionsCompat(activityOptionsCompat)
+                    .withString("url", url)
+                    .navigation();
+    }
+
+    public static void navigateToWeb(String url,int id) {
+        navigateToWeb(url,id, null);
+    }
+
+    public static void navigateToWeb(String url,int id, ActivityOptionsCompat activityOptionsCompat) {
         if (TextUtils.isEmpty(url)) {
             return;
         }
         ARouter.getInstance().build(PathConstants.PATH_WEB_COMMON)
                 .withOptionsCompat(activityOptionsCompat)
                 .withString("url", url)
+                .withInt("id",id)
                 .navigation();
     }
 

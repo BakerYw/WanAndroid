@@ -7,6 +7,7 @@ import com.nyw.domain.domain.bean.request.home.HomeReq;
 import com.nyw.domain.domain.bean.response.home.ArticleBean;
 import com.nyw.domain.domain.bean.response.home.BannerBean;
 import com.nyw.domain.domain.bean.response.home.CollectionBean;
+import com.nyw.domain.domain.event.home.CollectionEvent;
 import com.nyw.libproject.common.api.CBApiObserver;
 import com.nyw.wanandroid.module.home.mvp.HomeContract;
 import com.nyw.wanandroid.module.main.data.repository.mainRepositoryImpl;
@@ -37,6 +38,7 @@ public class MyCollectionPresenter extends MyCollectionContract.Presenter{
                     @Override
                     protected void success(WanApiResult data) {
                         ((MyCollectionContract.View) mView).UnCollectSuccese(position);
+                        CollectionEvent.postUncollect(originId,id);
                     }
                 });
     }

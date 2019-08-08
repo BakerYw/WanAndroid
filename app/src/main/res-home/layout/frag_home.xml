@@ -38,8 +38,6 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycle_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:nestedScrollingEnabled="false"/>
+            android:layout_height="match_parent"/>
     </com.bakerj.base.widgets.refresh.CustomRefreshLayout>
 </LinearLayout>

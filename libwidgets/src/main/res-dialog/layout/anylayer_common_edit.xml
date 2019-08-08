@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="32dp"
+    android:background="@drawable/anylayer_common_bg"
+    android:orientation="vertical">
+    <TextView
+        android:id="@+id/anylayer_common_tip_tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center"
+        android:textColor="@color/anylayer_common_text_title"
+        android:textSize="@dimen/anylayer_common_text_title"
+        tools:text="提示" />
+    <EditText
+        android:id="@+id/anylayer_common_tip_tv_edit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/dp_40"
+        android:layout_marginRight="@dimen/dp_40"
+        android:gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingTop="27dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="27dp"
+        android:hint="你的昵称"
+        android:textColor="@color/anylayer_common_text_content"
+        android:textSize="@dimen/anylayer_common_text_content" />
+    <TextView
+        android:id="@+id/anylayer_common_tip_tv_yes"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:layout_marginLeft="@dimen/dp_30"
+        android:layout_marginRight="@dimen/dp_30"
+        android:background="@color/colorPrimary"
+        android:textColor="@color/anylayer_common_white"
+        android:textSize="@dimen/anylayer_common_text_content"
+        tools:text="确定" />
+</LinearLayout>

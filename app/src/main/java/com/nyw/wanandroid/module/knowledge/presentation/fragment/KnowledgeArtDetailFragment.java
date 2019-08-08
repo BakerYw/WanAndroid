@@ -10,6 +10,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.nyw.domain.common.util.cache.SettingCacheUtil;
 import com.nyw.domain.domain.bean.response.home.ArticleBean;
+import com.nyw.domain.domain.event.home.CollectionEvent;
 import com.nyw.domain.domain.event.setting.SettingChangeEvent;
 import com.nyw.domain.domain.router.Navigation;
 import com.nyw.domain.domain.router.PathConstants;
@@ -46,7 +47,7 @@ public class KnowledgeArtDetailFragment extends WanBaseListPresenterFragment<Kno
         mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-                Navigation.navigateToWeb(mAdapter.getData().get(position).getLink());
+                Navigation.navigateToWeb(mAdapter.getData().get(position).getLink(),mAdapter.getData().get(position).getId());
             }
         });
         mAdapter.setOnCollectViewClickListener(new HomeAdapter.OnCollectViewClickListener() {
@@ -75,7 +76,26 @@ public class KnowledgeArtDetailFragment extends WanBaseListPresenterFragment<Kno
             RvAnimUtils.setAnim(mAdapter, SettingCacheUtil.getInstance().getRvAnim());
         }
     }
-
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onCollectionEvent(CollectionEvent event) {
+        if (isDetached()) {
+            return;
+        }
+        if (event.getArticleId() == -1) {
+            return;
+        }
+        List<ArticleBean> list = mAdapter.getData();
+        for (int i = 0; i < list.size(); i++) {
+            ArticleBean item = list.get(i);
+            if (item.getId() == event.getArticleId()) {
+                if (item.isCollect() != event.isCollect()) {
+                    item.setCollect(event.isCollect());
+                    mAdapter.notifyItemChanged(i + mAdapter.getHeaderLayoutCount());
+                }
+                break;
+            }
+        }
+    }
     @Override
     public void onDestroy() {
         super.onDestroy();

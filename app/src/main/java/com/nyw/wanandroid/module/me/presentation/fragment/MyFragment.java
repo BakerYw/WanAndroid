@@ -143,7 +143,7 @@ public class MyFragment extends WanBasePresenterFragment {
                 .transition(new DrawableTransitionOptions().crossFade())
                 .transform(new BlurTransformation(20, 8)) // 高斯模糊，参数1：模糊度；参数2：图片缩放x倍后再进行模糊
                 .into((ImageView) ivBlur);
-        tvUserName.setText(UserCacheUtil.getLoginName(getContext()));
+        tvUserName.setText(UserCacheUtil.getLoginName());
         Glide.with(getContext()).load(UserCacheUtil.getUserImage())
                 .error(R.mipmap.ic_launcher_round)
                 .into(civUserIcon);
