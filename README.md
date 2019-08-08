@@ -9,7 +9,7 @@
 [GitHub主页](https://github.com/goweii/WanAndroid)
 
 
-其次就是我师傅的框架结构了，采用 mvparm 的设计
+其次就是我BakerJQ的框架结构了，采用 mvparm 的设计
 下面是我师傅的github链接
 [GitHub主页](https://github.com/BakerJQ)
 
