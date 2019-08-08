@@ -37,16 +37,17 @@ QQ:992116519
 
 
 # 截图展示
-
-![](https://upload-images.jianshu.io/upload_images/9231307-be0daaeb178e2add.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp)
-
-![](https://upload-images.jianshu.io/upload_images/9231307-005e8928ae00920b.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp)
-
-![](https://upload-images.jianshu.io/upload_images/9231307-21b76c1e5591d7ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp)
-
-![](https://upload-images.jianshu.io/upload_images/9231307-4aee4e6eaa53dd9d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp)
-
-![](https://upload-images.jianshu.io/upload_images/9231307-abebdbc1e202a53d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1000/format/webp)
+#### 主页面展示
+<div >
+    <img src="https://github.com/nieyuwen/marry_nk/blob/first/photo/WechatIMG296.png" width="150" height="250"  alt=""/>
+    <img src="https://github.com/nieyuwen/marry_nk/blob/first/photo/WechatIMG297.png" width="150" height="250"  alt=""/>
+    <img src="https://github.com/nieyuwen/marry_nk/blob/first/photo/WechatIMG298.png" width="150" height="250"  alt=""/>
+    <img src="https://github.com/nieyuwen/marry_nk/blob/first/photo/WechatIMG299.png" width="150" height="250" alt=""/>
+    <img src="https://github.com/nieyuwen/marry_nk/blob/first/photo/WechatIMG300.png" width="150" height="250"  alt=""/>
+   <img src="https://github.com/nieyuwen/marry_nk/blob/first/photo/WechatIMG301.png" width="150" height="250"  alt=""/>
+   <img src="https://github.com/nieyuwen/marry_nk/blob/first/photo/WechatIMG302.png" width="150" height="250"  alt=""/>
+   <img src="https://github.com/nieyuwen/marry_nk/blob/first/photo/WechatIMG303.png" width="150" height="250"  alt=""/>
+</div>
 
 
 # 更新日志
