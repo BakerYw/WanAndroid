@@ -16,6 +16,7 @@ import com.nyw.wanandroid.utils.cookie.CookieManager;
 import com.scwang.smartrefresh.header.MaterialHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
+import com.scwang.smartrefresh.layout.header.ClassicsHeader;
 import com.tencent.bugly.Bugly;
 import com.tencent.bugly.beta.Beta;
 
@@ -55,10 +56,12 @@ public class CBApp extends MultiDexApplication {
                 .generateRetroClient();
 
         SmartRefreshLayout.setDefaultRefreshHeaderCreator((context, layout) -> {
-            MaterialHeader materialHeader = new MaterialHeader(context);
-            materialHeader.setColorSchemeColors(context.getResources().getColor(R.color
-                    .colorPrimary));
-            return materialHeader;
+//            MaterialHeader materialHeader = new MaterialHeader(context);
+//            materialHeader.setColorSchemeColors(context.getResources().getColor(R.color
+//                    .colorPrimary));
+//            return materialHeader;
+            ClassicsHeader header=new ClassicsHeader(context);
+            return header;
         });
         SmartRefreshLayout.setDefaultRefreshFooterCreator((context, layout) -> {
             ClassicsFooter classicsFooter = new ClassicsFooter(context);

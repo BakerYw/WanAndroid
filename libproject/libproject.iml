@@ -228,5 +228,17 @@
     <orderEntry type="module" module-name="domain" />
     <orderEntry type="module" module-name="libthird" />
     <orderEntry type="module" module-name="libwidgets" />
+    <orderEntry type="module" module-name="domain" />
+    <orderEntry type="module" module-name="libthird" />
+    <orderEntry type="module" module-name="libwidgets" />
+    <orderEntry type="module" module-name="domain" />
+    <orderEntry type="module" module-name="libthird" />
+    <orderEntry type="module" module-name="libwidgets" />
+    <orderEntry type="module" module-name="domain" />
+    <orderEntry type="module" module-name="libthird" />
+    <orderEntry type="module" module-name="libwidgets" />
+    <orderEntry type="module" module-name="domain" />
+    <orderEntry type="module" module-name="libthird" />
+    <orderEntry type="module" module-name="libwidgets" />
   </component>
 </module>
